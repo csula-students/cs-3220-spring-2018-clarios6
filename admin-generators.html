@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="admin-generators-styles.css">
+    <title>Incremental Game</title>
+  </head>
+  <body>
+    <h1>Incremental Game Framework</h1>
+    <nav>
+      <a href="admin-info.html">Game Infomation</a> |
+      <a href="admin-generators.html">Generators</a> |
+      <a href="admin-events.html">Events</a>
+    </nav>
+
+    <div id="add-event">
+      <form>
+        <label for="event-name">Event Name</label></br>
+        <input id="event-name" type="text" placeholder="Grandma"></br>
+        <label for="event-description">Event Description</label></br>
+        <input id="event-description" type="text" placeholder="Lorem ..."></br>
+        <label for="trigger-at">Trigger At</label></br>
+        <input id="trigger-at" type="text" placeholder="10"></br>
+        <button id="add-edit-button">{Add|Edit}</button>
+      </form>
+    </div>
+    <div id="event-table">
+      <table>
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Trigger At</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Grandma Shows up</td>
+            <td>Lorem ...</td>
+            <td>10</td>
+          </td>
+          <tr>
+            <td>You can construct factory now!</td>
+            <td>Lorem ...</td>
+            <td>50</td>
+          </td>
+          <tr>
+            <td>We've found cookies in deep mountain...</td>
+            <td>Lorem ...</td>
+            <td>200</td>
+          </td>
+        </tbody>
+      </table>
+    </div>
+  </body>
+</html>
