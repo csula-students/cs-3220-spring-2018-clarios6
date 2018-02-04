@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" type="text/css" href="styles.css">
+    <link rel="stylesheet" type="text/css" href="admin-generators-styles.css">
     <title>Incremental Game</title>
   </head>
   <body>
@@ -12,5 +12,56 @@
       <a href="admin-generators.html">Generators</a> |
       <a href="admin-events.html">Events</a>
     </nav>
+
+    <div id="wrap">
+      <div class="add-event">
+        <form>
+          <label for="generator-name">Generator Name</label></br>
+          <input id="generator-name" type="text" placeholder="Grandma"></br>
+          <label for="generator-rate">Generator Rate</label></br>
+          <input id="generator-rate" type="text" placeholder="0.5"></br>
+          <label for="base-cost">Base Cost</label></br>
+          <input id="base-cost" type="text" placeholder="10"></br>
+          <label for="unlock-at">Unlock At</label></br>
+          <input id="unlock-at" type="text" placeholder="Unlock At"></br>
+          <label for="description">Description</label></br>
+          <input id="description" type="text" placeholder="Text"></br>
+          <button id="add-edit-button">{Add|Edit}</button>
+        </form>
+      </div>
+      <div class="event-table">
+        <table>
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Rate</th>
+              <th>Cost</th>
+              <th>Unlock At</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Grandma</td>
+              <td>5</td>
+              <td>10</td>
+              <td>5</td>
+            </td>
+            <tr>
+              <td>Factory</td>
+              <td>5</td>
+              <td>50</td>
+              <td>50</td>
+            </td>
+            <tr>
+              <td>Mine</td>
+              <td>20</td>
+              <td>200</td>
+              <td>200</td>
+            </td>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
   </body>
 </html>

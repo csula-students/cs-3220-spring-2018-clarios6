@@ -1,6 +1,19 @@
-#add-edit-button{
+body{
+  background-color: #7FFF00
+}
+
+#wrap{
   float: left;
 }
-#event-table{
+.add-event{
+  float: left;
+}
+.event-table{
   float: right;
+  text-align: left;
+  padding-left: 100px;
+}
+
+th, td{
+  border-bottom: 1px solid #00FFFF
 }
