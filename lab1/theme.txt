@@ -13,3 +13,4 @@ Story:
 * Got Ores? Click on the button to create ores.
 * Your ores are pretty valuable
 * O is for ores, and ores are pretty neat.
+ edit to test push 
