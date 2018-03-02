@@ -15,7 +15,7 @@ export default function (store) {
 					type: 'MINE_BUTTON',
 					payload: 1
 				});
-				console.log('lolworks');
+				console.log('Mining Single Ore');
 			});
 		}
 	};

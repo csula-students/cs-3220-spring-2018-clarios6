@@ -776,7 +776,7 @@ exports.default = function (store) {
 					type: 'MINE_BUTTON',
 					payload: 1
 				});
-				console.log('lolworks');
+				console.log('Mining Single Ore');
 			});
 		}
 	};
@@ -894,10 +894,15 @@ exports.default = function (store) {
 					<p>1/60</p>
 					<button type="button" name="buy-slave" class="buy_button">10 Ores</button>
 				<div>`;
-			console.log("lol");
 			// TODO: subscribe to store on change event
 
 			// TODO: add click event
+			this.querySelector('button').addEventListener('click', () => {
+				this.store.dispatch({
+					type: 'BUY_GENERATOR',
+					payload: 10
+				});
+			});
 		}
 	};
 };

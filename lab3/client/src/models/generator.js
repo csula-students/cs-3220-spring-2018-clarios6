@@ -19,7 +19,7 @@ export default class Generator {
 	/**
 	 * getCost computes cost exponentially based on quantity (as formula below)
 	 * xt = x0(1 + r)^t
-	 * which 
+	 * which
 	 * xt is the value of x with t quantity
 	 * x0 is base value
 	 * r is growth ratio (see constants.growthRatio)
@@ -28,7 +28,8 @@ export default class Generator {
 	 */
 	getCost () {
 		// TODO: implement the function according to doc above
-		return 0;
+		var cost = this.baseCost * Math.pow((1 + growthRatio), this.quantity);
+		return cost;
 	}
 
 	/**
@@ -38,6 +39,7 @@ export default class Generator {
 	 */
 	generate () {
 		// TODO: implement based on doc above
-		return 0;
+		var make = this.rate * this.quantity;
+		return make;
 	}
 }
