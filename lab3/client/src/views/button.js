@@ -4,8 +4,6 @@ export default function (store) {
 			super();
 			this.store = store;
 
-
-
 			this.innerHTML = `<button>Mine Ore</button>`
 
 			// TODO: add click event to increment counter
@@ -15,7 +13,7 @@ export default function (store) {
 					type: 'MINE_BUTTON',
 					payload: 1
 				});
-				console.log('lolworks');
+				console.log('Mined One Ore');
 			});
 		}
 	};
