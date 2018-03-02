@@ -896,8 +896,29 @@ exports.default = function (store) {
 				<div>`;
 			console.log("lol");
 			// TODO: subscribe to store on change event
-
+			this.s;
 			// TODO: add click event
+			this.querySelector('button').addEventListener('click', () => {
+				console.log('Generator button click works');
+				this.store.dispatch({
+					type: 'BUY_GENERATOR',
+					payload: 'meta.'
+				});
+			});
+		}
+		handleStateChange(newState) {
+			console.log('GeneratorComponent#stateChange', this);
+			this.textContent = newState.example;
+		}
+
+		connectedCallback() {
+			console.log('GeneratorComponent#onConnectedCallback');
+			this.store.subscribe(this.onStateChange);
+		}
+
+		disconnectedCallback() {
+			console.log('GeneratorComponent#onDisconnectedCallback');
+			this.store.unsubscribe(this.onStateChange);
 		}
 	};
 };
