@@ -3,14 +3,16 @@ export default function (store) {
 		constructor () {
 			super();
 			this.store = store;
+			console.log('CounterComponent Created');
 			// TODO: render counter inner HTML based on the store state
-
+			this.textContent = this.store.state.counter;
 			this.onStateChange = this.handleStateChange.bind(this);
 		}
 
 		handleStateChange (newState) {
 			console.log('CounterComponent#stateChange', this, newState);
 			// TODO: update inner HTML based on the new state
+			this.innerHTML = store.state.counter;
 		}
 
 		connectedCallback () {
@@ -22,4 +24,3 @@ export default function (store) {
 		}
 	};
 }
-

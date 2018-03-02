@@ -14,7 +14,7 @@ export default function (store) {
 			this.addEventListener('click', () => {
 				this.store.dispatch({
 					type: 'EXAMPLE_MUTATION',
-					payload: 'You clicked this element'
+					payload: 'You clicked this element lol'
 				});
 			});
 		}
