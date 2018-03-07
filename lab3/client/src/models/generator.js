@@ -29,9 +29,8 @@ export default class Generator {
 	getCost () {
 		// TODO: implement the function according to doc above
 		var baseVal = this.baseCost;
-		var growthRatio = default.growthRatio;
 		var quantity = this.quantity;
-		var cost = baseVal * Math.pow((1 + growthRatio), quantity)
+		var cost = (baseVal * Math.pow((1 + 0.05), quantity)).toFixed(2) / 1;
 		return cost;
 	}
 

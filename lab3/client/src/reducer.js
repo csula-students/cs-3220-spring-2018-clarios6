@@ -13,11 +13,11 @@ export default function reducer (state, action) {
 			var cID = action.payload[0];
 			var cCurCost = action.payload[1];
 			var cBaseCost = action.payload[2];
-			var growth = 1 + 0.5;
+			var growth = 1 + 0.05;
 			state.counter -= cCurCost; //this is the cost
 			state.generators[cID].quantity += 1;
 			var quantity = state.generators[cID].quantity;
-			state.generators[cID].cost = cBaseCost * Math.pow(growth, quantity);
+			state.generators[cID].cost = (cBaseCost * Math.pow(growth, quantity)).toFixed(2) / 1;
 			//console.log('cost is',  this.default.growthRatio);
 			console.log('can buy Generator');
 		} else {

@@ -183,18 +183,20 @@ function main() {
 			name: 'Robot',
 			description: 'An expensive robot that generates 10 ores per minute',
 			rate: '10/60',
-			rateForCalc: 10 / 60,
+			rateForCalc: 10,
 			quantity: 0,
 			cost: 20,
 			baseCost: 10
 		}, {
+			type: 'autonomous',
 			name: 'Advanced Robot',
 			description: 'A state of the art robot. It generates 20 ores per minute',
 			rate: '20/60',
-			rateForCalc: 20 / 60,
+			rateForCalc: 20,
 			quantity: 0,
 			cost: 20,
-			baseCost: 10
+			baseCost: 10,
+			unlockValue: 100
 		}],
 		story: []
 	};
@@ -779,11 +781,11 @@ function reducer(state, action) {
 				var cID = action.payload[0];
 				var cCurCost = action.payload[1];
 				var cBaseCost = action.payload[2];
-				var growth = 1 + 0.5;
+				var growth = 1 + 0.05;
 				state.counter -= cCurCost; //this is the cost
 				state.generators[cID].quantity += 1;
 				var quantity = state.generators[cID].quantity;
-				state.generators[cID].cost = cBaseCost * Math.pow(growth, quantity);
+				state.generators[cID].cost = (cBaseCost * Math.pow(growth, quantity)).toFixed(2) / 1;
 				//console.log('cost is',  this.default.growthRatio);
 				console.log('can buy Generator');
 			} else {
@@ -807,6 +809,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = {
 	growthRatio: 0.05,
+	//reducer.js
 	actions: {
 		EXAMPLE: 'EXAMPLE_MUTATION',
 		MINE_BUTTON: 'MINE_BUTTON',

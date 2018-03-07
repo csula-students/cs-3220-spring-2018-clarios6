@@ -91,19 +91,21 @@ function main () {
 				name: 'Robot',
 				description: 'An expensive robot that generates 10 ores per minute',
 				rate: '10/60',
-				rateForCalc: 10 / 60,
+				rateForCalc: 10,
 				quantity: 0,
 				cost: 20,
 				baseCost: 10
 			},
 			{
+				type: 'autonomous',
 				name: 'Advanced Robot',
 				description: 'A state of the art robot. It generates 20 ores per minute',
 				rate: '20/60',
-				rateForCalc: 20 / 60,
+				rateForCalc: 20,
 				quantity: 0,
 				cost: 20,
-				baseCost: 10
+				baseCost: 10,
+				unlockValue:100
 			}
 		],
 		story: []
