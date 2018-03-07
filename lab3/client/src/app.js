@@ -77,7 +77,35 @@ function main () {
 	const initialState = {
 		example: 'Hello custom element',
 		counter: 0,
-		generators: [],
+		generators: [
+			{
+				name: 'Slave',
+				description: 'A run of the mill slave it generates one ore per minute',
+				rate: '1/60',
+				rateForCalc: 1 / 60,
+				quantity: 0,
+				cost: 10,
+				baseCost: 10
+			},
+			{
+				name: 'Robot',
+				description: 'An expensive robot that generates 10 ores per minute',
+				rate: '10/60',
+				rateForCalc: 10 / 60,
+				quantity: 0,
+				cost: 20,
+				baseCost: 10
+			},
+			{
+				name: 'Advanced Robot',
+				description: 'A state of the art robot. It generates 20 ores per minute',
+				rate: '20/60',
+				rateForCalc: 20 / 60,
+				quantity: 0,
+				cost: 20,
+				baseCost: 10
+			}
+		],
 		story: []
 	};
 

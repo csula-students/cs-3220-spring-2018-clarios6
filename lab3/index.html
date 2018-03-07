@@ -18,38 +18,13 @@
     </div>
     <div class="generators">
       <div class="manual-generator">
-        <p>Ores:</p>
         <game-counter></game-counter>
         <game-button></game-button>
       </div>
       <div class="auto-generator-list">
-        <div class="generator-container">
-          <game-generator data-id="0"><game-generator>
-        </div>
-        <div class="generator-container">
-          <h3>Slave</h3>
-          <p>A run of the mill slave it generates one ore per minute</p>
-          <div class="gen-con-bottom-row-info">
-            <p>1/60</p>
-            <button type="button" name="buy-slave" class="buy_button">10 Ores</button>
-          </div>
-        </div>
-        <div class="generator-container">
-          <h3>Robot</h3>
-          <p>An expensive robot that generates 10 ores per minute</p>
-          <div class="gen-con-bottom-row-info">
-            <p>10/60</p>
-            <button type="button" name="buy-robot" class="buy_button">100 Ores</button>
-          </div>
-        </div>
-        <div class="generator-container">
-          <h3>Advanced Robot</h3>
-          <p>A state of the art robot. It generates 20 ores per minute</p>
-          <div class="gen-con-bottom-row-info">
-            <p>1/60</p>
-            <button type="button" name="buy-slave" class="buy_button">500 Ores</button>
-          </div>
-        </div>
+        <game-generator data-id="0"></game-generator>
+        <game-generator data-id="1"></game-generator>
+        <game-generator data-id="2"></game-generator>
       </div>
     </div>
     <footer>

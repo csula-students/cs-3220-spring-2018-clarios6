@@ -30,7 +30,8 @@ export default class Store {
 	 */
 	dispatch (action) {
 		this.__state = this.reducer(this.state, action);
-		this.listeners.forEach(l => (this.state, action));
+		console.log(this.listeners);
+		this.listeners.forEach(l => l(this.state, action)); //MAKE SURE THE FUNCTION IS BEING CALLED
 	}
 
 	/**

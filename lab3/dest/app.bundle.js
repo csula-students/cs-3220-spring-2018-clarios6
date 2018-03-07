@@ -82,23 +82,23 @@ var _reducer = __webpack_require__(6);
 
 var _reducer2 = _interopRequireDefault(_reducer);
 
-var _button = __webpack_require__(7);
+var _button = __webpack_require__(8);
 
 var _button2 = _interopRequireDefault(_button);
 
-var _counter = __webpack_require__(8);
+var _counter = __webpack_require__(9);
 
 var _counter2 = _interopRequireDefault(_counter);
 
-var _example = __webpack_require__(9);
+var _example = __webpack_require__(10);
 
 var _example2 = _interopRequireDefault(_example);
 
-var _generator = __webpack_require__(10);
+var _generator = __webpack_require__(11);
 
 var _generator2 = _interopRequireDefault(_generator);
 
-var _storyBook = __webpack_require__(11);
+var _storyBook = __webpack_require__(12);
 
 var _storyBook2 = _interopRequireDefault(_storyBook);
 
@@ -171,7 +171,31 @@ function main() {
 	const initialState = {
 		example: 'Hello custom element',
 		counter: 0,
-		generators: [],
+		generators: [{
+			name: 'Slave',
+			description: 'A run of the mill slave it generates one ore per minute',
+			rate: '1/60',
+			rateForCalc: 1 / 60,
+			quantity: 0,
+			cost: 10,
+			baseCost: 10
+		}, {
+			name: 'Robot',
+			description: 'An expensive robot that generates 10 ores per minute',
+			rate: '10/60',
+			rateForCalc: 10 / 60,
+			quantity: 0,
+			cost: 20,
+			baseCost: 10
+		}, {
+			name: 'Advanced Robot',
+			description: 'A state of the art robot. It generates 20 ores per minute',
+			rate: '20/60',
+			rateForCalc: 20 / 60,
+			quantity: 0,
+			cost: 20,
+			baseCost: 10
+		}],
 		story: []
 	};
 
@@ -694,7 +718,8 @@ class Store {
   */
 	dispatch(action) {
 		this.__state = this.reducer(this.state, action);
-		this.listeners.forEach(l => (this.state, action));
+		console.log(this.listeners);
+		this.listeners.forEach(l => l(this.state, action)); //MAKE SURE THE FUNCTION IS BEING CALLED
 	}
 
 	/**
@@ -734,6 +759,13 @@ Object.defineProperty(exports, "__esModule", {
 	value: true
 });
 exports.default = reducer;
+
+var _constants = __webpack_require__(7);
+
+var _constants2 = _interopRequireDefault(_constants);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
 function reducer(state, action) {
 	switch (action.type) {
 		case 'EXAMPLE_MUTATION':
@@ -743,7 +775,20 @@ function reducer(state, action) {
 			state.counter += action.payload;
 			return state;
 		case 'BUY_GENERATOR':
-			state.counter -= action.payload;
+			if ( /*state.counter >= action.payload[2]*/true) {
+				var cID = action.payload[0];
+				var cCurCost = action.payload[1];
+				var cBaseCost = action.payload[2];
+				var growth = 1 + 0.5;
+				state.counter -= cCurCost; //this is the cost
+				state.generators[cID].quantity += 1;
+				var quantity = state.generators[cID].quantity;
+				state.generators[cID].cost = cBaseCost * Math.pow(growth, quantity);
+				//console.log('cost is',  this.default.growthRatio);
+				console.log('can buy Generator');
+			} else {
+				console.log('cant buy generator');
+			}
 			return state;
 		default:
 			return state;
@@ -752,6 +797,25 @@ function reducer(state, action) {
 
 /***/ }),
 /* 7 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+	value: true
+});
+exports.default = {
+	growthRatio: 0.05,
+	actions: {
+		EXAMPLE: 'EXAMPLE_MUTATION',
+		MINE_BUTTON: 'MINE_BUTTON',
+		BUY_GENERATOR: 'BUY_GENERATOR'
+	}
+};
+
+/***/ }),
+/* 8 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -783,7 +847,7 @@ exports.default = function (store) {
 };
 
 /***/ }),
-/* 8 */
+/* 9 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -807,10 +871,13 @@ exports.default = function (store) {
 		handleStateChange(newState) {
 			console.log('CounterComponent#stateChange', this, newState);
 			// TODO: update inner HTML based on the new state
-			this.innerHTML = store.state.counter;
+			this.innerHTML = `<p>Ores: ${store.state.counter}</p>`;
+			console.log('updated counter');
 		}
 
 		connectedCallback() {
+			console.log(this.onStateChange);
+			this.innerHTML = `<p>Ores: 0</p>`;
 			this.store.subscribe(this.onStateChange);
 		}
 
@@ -821,7 +888,7 @@ exports.default = function (store) {
 };
 
 /***/ }),
-/* 9 */
+/* 10 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -869,7 +936,7 @@ exports.default = function (store) {
 };
 
 /***/ }),
-/* 10 */
+/* 11 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -884,12 +951,89 @@ exports.default = function (store) {
 		constructor() {
 			super();
 			this.store = store;
+			this.id = this.dataset.id;
+			console.log('generator created', this.id);
+			this.onStateChange = this.handleStateChange.bind(this);
+			// TODO: render generator initial view
+
+			// TODO: subscribe to store on change event
+
+			// TODO: add click event
+		}
+		handleStateChange(newState) {
+			console.log('GeneratorComponent#stateChange', this, newState);
+			console.log('state change for gen');
+			let thisID = this.id;
+			const name = store.state.generators[this.id].name;
+			let quant = store.state.generators[this.id].quantity;
+			const desc = store.state.generators[this.id].description;
+			const rate = store.state.generators[this.id].rate;
+			const rateForCalc = store.state.generators[this.id].rate;
+			const cost = store.state.generators[this.id].cost;
+			const baseCost = store.state.generators[this.id].baseCost;
+			this.innerHTML = `
+			<div class="generator-container">
+				<h3>${name}</h3>
+				<p>${quant}</p>
+				<p>${desc}</p>
+				<div class="gen-con-bottom-row-info">
+					<p>${rate}</p>
+					<button type="button" name="buy-slave" class="buy_button">${cost}</button>
+				</div>
+			</div>`;
+
+			this.querySelector('button').addEventListener('click', () => {
+				console.log(name);
+				this.store.dispatch({
+					type: 'BUY_GENERATOR',
+					payload: [thisID, cost, baseCost] //tried doing JSON, but couldn't format it correctly
+				});
+			});
+		}
+
+		connectedCallback() {
+			console.log('In Callback for gen', this, this.dataset.id);
+			//this.innerHTML = `<p>${store.state.generators[this.id].name}</p>`;
+			let thisID = this.id;
+			const name = store.state.generators[this.id].name;
+			let quant = store.state.generators[this.id].quantity;
+			const desc = store.state.generators[this.id].description;
+			const rate = store.state.generators[this.id].rate;
+			const rateForCalc = store.state.generators[this.id].rate;
+			const cost = store.state.generators[this.id].cost;
+			const baseCost = store.state.generators[this.id].baseCost;
+			this.innerHTML = `
+			<div class="generator-container">
+				<h3>${name}</h3>
+				<p>${quant}</p>
+				<p>${desc}</p>
+				<div class="gen-con-bottom-row-info">
+					<p>${rate}</p>
+					<button type="button" name="buy-slave" class="buy_button">${cost}</button>
+				</div>
+			</div>`;
+
+			this.querySelector('button').addEventListener('click', () => {
+				console.log(name);
+				this.store.dispatch({
+					type: 'BUY_GENERATOR',
+					payload: [thisID, cost, baseCost] //tried doing JSON, but couldn't format it correctly
+				});
+			});
+
+			this.store.subscribe(this.onStateChange);
+		}
+
+		disconnectedCallback() {
+			console.log('ExampleComponent#onDisconnectedCallback');
+			console.log('disconnectedCallback for gen');
+			this.store.unsubscribe(this.onStateChange);
 		}
 	};
 };
 
 /***/ }),
-/* 11 */
+/* 12 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
