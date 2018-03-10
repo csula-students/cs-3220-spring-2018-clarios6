@@ -1,0 +1,41 @@
+header{
+  font-family: 'Oswald', sans-serif;
+}
+body{
+  font-family: 'Roboto Condensed', sans-serif;
+}
+.story-book{
+  background-color: black;
+  color: white;
+  overflow: auto;
+}
+.manual-generator{
+  display: flex;
+  justify-content: center;
+}
+.auto-generator-list{
+  display: flex;
+  width: auto;
+  justify-content: center;
+}
+.generator-container{
+  margin: 1em;
+  padding-left: 1em;
+  padding-right: 1em;
+  padding-bottom: 1em;
+  border-width: thin;
+  border-style: solid;
+}
+.gen-con-bottom-row-info{
+  padding-top: 5em;
+  display: flex;
+}
+#buy_button{
+  position: relative;
+  right: 0px;
+}
+footer{
+  font-family: 'Oswald', sans-serif;
+  position: absolute;
+  bottom: 0px;
+}
