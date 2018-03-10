@@ -172,30 +172,28 @@ function main() {
 		example: 'Hello custom element',
 		counter: 0,
 		generators: [{
+			type: 'autonomous',
 			name: 'Slave',
 			description: 'A run of the mill slave it generates one ore per minute',
-			rate: '1/60',
-			rateForCalc: 1 / 60,
+			rate: 1,
 			quantity: 0,
-			cost: 10,
-			baseCost: 10
+			baseCost: 10,
+			unlockValue: 10
 		}, {
+			type: 'autonomous',
 			name: 'Robot',
 			description: 'An expensive robot that generates 10 ores per minute',
-			rate: '10/60',
-			rateForCalc: 10,
+			rate: 10,
 			quantity: 0,
-			cost: 20,
-			baseCost: 10
+			baseCost: 20,
+			unlockValue: 30
 		}, {
 			type: 'autonomous',
 			name: 'Advanced Robot',
 			description: 'A state of the art robot. It generates 20 ores per minute',
-			rate: '20/60',
-			rateForCalc: 20,
+			rate: 20,
 			quantity: 0,
-			cost: 20,
-			baseCost: 10,
+			baseCost: 20,
 			unlockValue: 100
 		}],
 		story: []
@@ -777,20 +775,46 @@ function reducer(state, action) {
 			state.counter += action.payload;
 			return state;
 		case 'BUY_GENERATOR':
-			if ( /*state.counter >= action.payload[2]*/true) {
-				var cID = action.payload[0];
-				var cCurCost = action.payload[1];
-				var cBaseCost = action.payload[2];
-				var growth = 1 + 0.05;
-				state.counter -= cCurCost; //this is the cost
-				state.generators[cID].quantity += 1;
-				var quantity = state.generators[cID].quantity;
-				state.generators[cID].cost = (cBaseCost * Math.pow(growth, quantity)).toFixed(2) / 1;
-				//console.log('cost is',  this.default.growthRatio);
-				console.log('can buy Generator');
-			} else {
-				console.log('cant buy generator');
+			console.log('reducer for gen');
+			var growth = 1 + 0.05;
+			for (var i = 0; i < state.generators.length; i++) {
+				console.log('in gen loop', i);
+				console.log(state.generators[i].name);
+				console.log(action.payload.name);
+				if (state.generators[i].name == action.payload.name) {
+					console.log('found gen');
+					var cost = (state.generators[i].baseCost * Math.pow(growth, state.generators[i].quantity)).toFixed(2) / 1;
+					console.log(cost);
+					state.counter = (state.counter - cost).toFixed(2) / 1;
+					state.generators[i].quantity += action.payload.quantity;
+					break;
+				}
 			}
+
+			/*
+   if(state.counter >= action.payload[2] true){
+   	const genName = action.payload.name;
+   	const genQuan = action.payload.quantiy;
+   		for(var i = 0 ; i < state.generators.length; i++){
+   		if(state.generators[i].name === genName){
+   				state.counter = state.counter - ((state.generators[i].baseCost * Math.pow(0.05, action.quantity)).toFixed(2) / 1);
+   			state.generators[i].quantiy += 1;
+   		}
+   		}
+   		var cID = action.payload[0];
+   	var cCurCost = action.payload[1];
+   	var cBaseCost = action.payload[2];
+   	var growth = 1 + 0.05;
+   	state.counter -= cCurCost; //this is the cost
+   	state.generators[cID].quantity += 1;
+   	var quantity = state.generators[cID].quantity;
+   	state.generators[cID].cost = (cBaseCost * Math.pow(growth, quantity)).toFixed(2) / 1;
+   	//console.log('cost is',  this.default.growthRatio);
+   	console.log('can buy Generator');
+   	} else {
+   	console.log('cant buy generator');
+   }
+   */
 			return state;
 		default:
 			return state;
@@ -967,13 +991,13 @@ exports.default = function (store) {
 			console.log('GeneratorComponent#stateChange', this, newState);
 			console.log('state change for gen');
 			let thisID = this.id;
-			const name = store.state.generators[this.id].name;
+			const curName = store.state.generators[this.id].name;
 			let quant = store.state.generators[this.id].quantity;
+			let add = 1;
 			const desc = store.state.generators[this.id].description;
-			const rate = store.state.generators[this.id].rate;
-			const rateForCalc = store.state.generators[this.id].rate;
-			const cost = store.state.generators[this.id].cost;
+			const rate = store.state.generators[this.id].rate + '/60';
 			const baseCost = store.state.generators[this.id].baseCost;
+			const curCost = (baseCost * Math.pow(1 + 0.05, quant)).toFixed(2) / 1;
 			this.innerHTML = `
 			<div class="generator-container">
 				<h3>${name}</h3>
@@ -981,7 +1005,7 @@ exports.default = function (store) {
 				<p>${desc}</p>
 				<div class="gen-con-bottom-row-info">
 					<p>${rate}</p>
-					<button type="button" name="buy-slave" class="buy_button">${cost}</button>
+					<button type="button" name="buy-slave" class="buy_button">${curCost}</button>
 				</div>
 			</div>`;
 
@@ -989,7 +1013,10 @@ exports.default = function (store) {
 				console.log(name);
 				this.store.dispatch({
 					type: 'BUY_GENERATOR',
-					payload: [thisID, cost, baseCost] //tried doing JSON, but couldn't format it correctly
+					payload: {
+						name: curName,
+						quantity: add
+					}
 				});
 			});
 		}
@@ -998,12 +1025,10 @@ exports.default = function (store) {
 			console.log('In Callback for gen', this, this.dataset.id);
 			//this.innerHTML = `<p>${store.state.generators[this.id].name}</p>`;
 			let thisID = this.id;
-			const name = store.state.generators[this.id].name;
-			let quant = store.state.generators[this.id].quantity;
+			const curName = store.state.generators[this.id].name;
+			let quant = 1;
 			const desc = store.state.generators[this.id].description;
-			const rate = store.state.generators[this.id].rate;
-			const rateForCalc = store.state.generators[this.id].rate;
-			const cost = store.state.generators[this.id].cost;
+			const rate = store.state.generators[this.id].rate + '/60';
 			const baseCost = store.state.generators[this.id].baseCost;
 			this.innerHTML = `
 			<div class="generator-container">
@@ -1012,7 +1037,7 @@ exports.default = function (store) {
 				<p>${desc}</p>
 				<div class="gen-con-bottom-row-info">
 					<p>${rate}</p>
-					<button type="button" name="buy-slave" class="buy_button">${cost}</button>
+					<button type="button" name="buy-slave" class="buy_button">${baseCost}</button>
 				</div>
 			</div>`;
 
@@ -1020,8 +1045,10 @@ exports.default = function (store) {
 				console.log(name);
 				this.store.dispatch({
 					type: 'BUY_GENERATOR',
-					payload: [thisID, cost, baseCost] //tried doing JSON, but couldn't format it correctly
-				});
+					payload: {
+						name: curName,
+						quantity: quant //tried doing JSON, but couldn't format it correctly
+					} });
 			});
 
 			this.store.subscribe(this.onStateChange);

@@ -79,32 +79,30 @@ function main () {
 		counter: 0,
 		generators: [
 			{
+				type: 'autonomous',
 				name: 'Slave',
 				description: 'A run of the mill slave it generates one ore per minute',
-				rate: '1/60',
-				rateForCalc: 1 / 60,
+				rate: 1,
 				quantity: 0,
-				cost: 10,
-				baseCost: 10
+				baseCost: 10,
+				unlockValue: 10
 			},
 			{
+				type: 'autonomous',
 				name: 'Robot',
 				description: 'An expensive robot that generates 10 ores per minute',
-				rate: '10/60',
-				rateForCalc: 10,
+				rate: 10,
 				quantity: 0,
-				cost: 20,
-				baseCost: 10
+				baseCost: 20,
+				unlockValue: 30
 			},
 			{
 				type: 'autonomous',
 				name: 'Advanced Robot',
 				description: 'A state of the art robot. It generates 20 ores per minute',
-				rate: '20/60',
-				rateForCalc: 20,
+				rate: 20,
 				quantity: 0,
-				cost: 20,
-				baseCost: 10,
+				baseCost: 20,
 				unlockValue:100
 			}
 		],
