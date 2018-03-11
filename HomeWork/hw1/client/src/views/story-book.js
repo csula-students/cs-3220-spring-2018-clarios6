@@ -3,6 +3,7 @@ export default function (store) {
 		constructor () {
 			super();
 			this.store = store;
+			// TODO: initial DOM rendering of story itself
 
 			this.onStateChange = this.handleStateChange.bind(this);
 		}
@@ -20,4 +21,3 @@ export default function (store) {
 		}
 	};
 }
-
