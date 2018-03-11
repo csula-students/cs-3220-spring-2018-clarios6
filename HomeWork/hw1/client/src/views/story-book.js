@@ -14,6 +14,14 @@ export default function (store) {
 
 		connectedCallback () {
 			this.store.subscribe(this.onStateChange);
+			this.innerHTML = `
+			<div class="story-book">
+				<p>Got Ores? Click on the button to mine one.</p>
+				<p>Your ores are pretty valuable</p>
+				<p>O is for ores, and ores are pretty neat.</p>
+				<p>More story to come...</p>
+			</div>
+			`;
 		}
 
 		disconnectedCallback () {

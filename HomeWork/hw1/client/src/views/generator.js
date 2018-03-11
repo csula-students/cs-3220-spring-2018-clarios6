@@ -75,7 +75,7 @@ export default function (store) {
 					payload: {
 						name: curName,
 						quantity: quant
-					} //tried doing JSON, but couldn't format it correctly
+					} 
 				});
 			});
 
