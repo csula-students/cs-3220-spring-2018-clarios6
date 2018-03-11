@@ -53,7 +53,7 @@ export default function (store) {
 			//this.innerHTML = `<p>${store.state.generators[this.id].name}</p>`;
 			let thisID = this.id;
 			const curName = store.state.generators[this.id].name;
-			let quant = 1;
+			let quant = 0;
 			const desc = store.state.generators[this.id].description;
 			const rate = store.state.generators[this.id].rate + '/60';
 			const baseCost = store.state.generators[this.id].baseCost;
