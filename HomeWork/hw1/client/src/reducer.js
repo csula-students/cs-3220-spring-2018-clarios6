@@ -24,38 +24,10 @@ export default function reducer (state, action) {
 				break;
 			}
 		}
-
-
-
-		/*
-		if(state.counter >= action.payload[2] true){
-			const genName = action.payload.name;
-			const genQuan = action.payload.quantiy;
-
-			for(var i = 0 ; i < state.generators.length; i++){
-				if(state.generators[i].name === genName){
-
-					state.counter = state.counter - ((state.generators[i].baseCost * Math.pow(0.05, action.quantity)).toFixed(2) / 1);
-					state.generators[i].quantiy += 1;
-				}
-
-			}
-
-			var cID = action.payload[0];
-			var cCurCost = action.payload[1];
-			var cBaseCost = action.payload[2];
-			var growth = 1 + 0.05;
-			state.counter -= cCurCost; //this is the cost
-			state.generators[cID].quantity += 1;
-			var quantity = state.generators[cID].quantity;
-			state.generators[cID].cost = (cBaseCost * Math.pow(growth, quantity)).toFixed(2) / 1;
-			//console.log('cost is',  this.default.growthRatio);
-			console.log('can buy Generator');
-
-		} else {
-			console.log('cant buy generator');
-		}
-		*/
+		return state;
+	case 'INCREMENT':
+		console.log('Incrementing by', action.payload);
+		state.counter += action.payload;
 		return state;
 	default:
 		return state;

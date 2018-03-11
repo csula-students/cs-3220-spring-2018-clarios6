@@ -74,8 +74,8 @@ export default function (store) {
 					type: 'BUY_GENERATOR',
 					payload: {
 						name: curName,
-						quantity: quant
-					} 
+						quantity: 1
+					}
 				});
 			});
 
