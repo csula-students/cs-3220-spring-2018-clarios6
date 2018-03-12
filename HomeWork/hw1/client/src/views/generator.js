@@ -26,7 +26,7 @@ export default function (store) {
 			const curCost = (baseCost * Math.pow((1 + 0.05), quant)).toFixed(2) / 1;
 			this.innerHTML = `
 			<div class="generator-container">
-				<h3>${name}</h3>
+				<h3>${curName}</h3>
 				<p>${quant}</p>
 				<p>${desc}</p>
 				<div class="gen-con-bottom-row-info">
@@ -59,7 +59,7 @@ export default function (store) {
 			const baseCost = store.state.generators[this.id].baseCost;
 			this.innerHTML = `
 			<div class="generator-container">
-				<h3>${name}</h3>
+				<h3>${curName}</h3>
 				<p>${quant}</p>
 				<p>${desc}</p>
 				<div class="gen-con-bottom-row-info">

@@ -29,6 +29,18 @@ export default function reducer (state, action) {
 		console.log('Incrementing by', action.payload);
 		state.counter += action.payload;
 		return state;
+	case 'CHECK_STORY':
+		console.log('Checking Story');
+		for(var i = 0 ; i < state.story.length ; i ++){
+			if(state.story[i].state == 'hidden'){ //too lazy to google how an and comparison works
+				if(state.counter >= state.story[i].triggeredAt){
+					state.story[i].state = 'visible';
+					console.log(state.story[i].name);
+					console.log(state.story[i].state);
+				}
+			}
+		}
+		return state;
 	default:
 		return state;
 	}

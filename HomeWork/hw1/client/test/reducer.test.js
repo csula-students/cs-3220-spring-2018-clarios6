@@ -45,7 +45,7 @@ test('should be able to increment counter based on modifier from "INCREMENT" act
 		stories: []
 	};
 	const expected = Object.assign({}, initialState, {counter: 15});
-	expect(reducer(initialState, action)).toBe(expected);
+	expect(reducer(initialState, action)).toEqual(expected);
 });
 
 test('should be able to mutate story state on "CHECK_STORY" action', () => {
@@ -62,5 +62,5 @@ test('should be able to mutate story state on "CHECK_STORY" action', () => {
 		generators: [mock.generator],
 		story: [Object.assign({}, mock.story, {state: 'visible'})]
 	};
-	expect(reducer(initialState, action)).toBe(expected);
+	expect(reducer(initialState, action)).toEqual(expected);
 });

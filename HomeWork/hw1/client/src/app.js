@@ -109,20 +109,20 @@ function main () {
 		story: [
 			{
 				name: 'Slave shows up',
-				description: 'Slalve mining ores',
-				triggeredAt: '1',
+				description: 'Slave mining ores',
+				triggeredAt: 10,
 				state: 'hidden'
 			},
 			{
 				name: 'Robots are invented',
 				description: 'Robots mine faster than slaves',
-				triggeredAt: '2',
+				triggeredAt: 15,
 				state: 'hidden'
 			},
 			{
 				name: 'Advanced Robots created',
 				description: 'Advanced Robots just do it better',
-				triggeredAt: '3',
+				triggeredAt: 20,
 				state: 'hidden'
 			},
 		]
