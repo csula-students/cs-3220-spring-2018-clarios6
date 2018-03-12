@@ -12,7 +12,7 @@ test('should be able to set example state from "EXAMPLE_MUTATION" action', () =>
 		example: 'hello'
 	};
 	const expected = action.payload;
-	expect(reducer(initialState, action).example).toEqual(expected);
+	expect(reducer(initialState, action).example).toBe(expected);
 });
 
 test('should be able to muate resource and generators on "BUY_GENERATOR" action', () => {
@@ -30,6 +30,37 @@ test('should be able to muate resource and generators on "BUY_GENERATOR" action'
 	const expected = {
 		counter: 0,
 		generators: [ Object.assign({}, mock.generator, {quantity: 1}) ]
+	};
+	expect(reducer(initialState, action)).toEqual(expected);
+});
+
+test('should be able to increment counter based on modifier from "INCREMENT" action', () => {
+	const action = {
+		type: constants.actions.INCREMENT,
+		payload: 15
+	};
+	const initialState = {
+		counter: 0,
+		generators: [],
+		stories: []
+	};
+	const expected = Object.assign({}, initialState, {counter: 15});
+	expect(reducer(initialState, action)).toEqual(expected);
+});
+
+test('should be able to mutate story state on "CHECK_STORY" action', () => {
+	const action = {
+		type: constants.actions.CHECK_STORY
+	};
+	const initialState = {
+		counter: 11,
+		generators: [mock.generator],
+		story: [mock.story]
+	};
+	const expected = {
+		counter: 11,
+		generators: [mock.generator],
+		story: [Object.assign({}, mock.story, {state: 'visible'})]
 	};
 	expect(reducer(initialState, action)).toEqual(expected);
 });

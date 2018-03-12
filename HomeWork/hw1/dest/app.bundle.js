@@ -175,7 +175,7 @@ function main() {
 			type: 'autonomous',
 			name: 'Slave',
 			description: 'A run of the mill slave it generates one ore per minute',
-			rate: 1,
+			rate: 5,
 			quantity: 0,
 			baseCost: 10,
 			unlockValue: 10
@@ -185,7 +185,7 @@ function main() {
 			description: 'An expensive robot that generates 10 ores per minute',
 			rate: 10,
 			quantity: 0,
-			baseCost: 20,
+			baseCost: 15,
 			unlockValue: 30
 		}, {
 			type: 'autonomous',
@@ -196,7 +196,22 @@ function main() {
 			baseCost: 20,
 			unlockValue: 100
 		}],
-		story: []
+		story: [{
+			name: 'Slave shows up',
+			description: 'Slave mining ores',
+			triggeredAt: 10,
+			state: 'hidden'
+		}, {
+			name: 'Robots are invented',
+			description: 'Robots mine faster than slaves',
+			triggeredAt: 15,
+			state: 'hidden'
+		}, {
+			name: 'Advanced Robots created',
+			description: 'Advanced Robots just do it better',
+			triggeredAt: 20,
+			state: 'hidden'
+		}]
 	};
 
 	// initialize store
@@ -653,9 +668,8 @@ Object.defineProperty(exports, "__esModule", {
 	value: true
 });
 exports.loop = loop;
-exports.increment = increment;
 // default interval as 1 second
-const interval = 1000;
+const interval = 5000;
 
 /**
  * loop is main loop of the game, which will be executed once every second (
@@ -665,15 +679,33 @@ function loop(store) {
 	// TODO: increment counter based on the generators in the state
 	// hint: read how many "generators" in store and iterate through them to
 	//       count how many value to increment to "resource"
-
+	// hint: remember to change event through `store.dispatch`
+	var incrementBy = 0;
+	for (var a = 0; a < store.state.generators.length; a++) {
+		console.log('Generator Amount', store.state.generators.length);
+		console.log('game js', store.state.generators[a].name);
+		/*if(store.state.generators[i].type == 'autonomous'){
+  	incrementBy += store.state.generators[i].quantity * store.state.generators[i].rate;
+  }*/
+		incrementBy += store.state.generators[a].quantity * store.state.generators[a].rate;
+	}
+	store.dispatch({
+		type: 'INCREMENT',
+		payload: incrementBy
+	});
 
 	// TODO: triggers stories from story to display state if they are passed
 	//       the `triggeredAt` points
-	setTimeout(loop.bind(this, store), interval);
-}
+	// hint: use store.dispatch to send event for changing events state
+	console.log('Story Amount', store.state.story.length);
+	for (var i = 0; i < store.state.story.length; i++) {
+		store.dispatch({
+			type: 'CHECK_STORY'
+		});
+	}
 
-function increment(state, modifier = 1) {
-	return state.counter + 1 * modifier;
+	// recursively calls loop method every second
+	setTimeout(loop.bind(this, store), interval);
 }
 
 /***/ }),
@@ -790,31 +822,22 @@ function reducer(state, action) {
 					break;
 				}
 			}
-
-			/*
-   if(state.counter >= action.payload[2] true){
-   	const genName = action.payload.name;
-   	const genQuan = action.payload.quantiy;
-   		for(var i = 0 ; i < state.generators.length; i++){
-   		if(state.generators[i].name === genName){
-   				state.counter = state.counter - ((state.generators[i].baseCost * Math.pow(0.05, action.quantity)).toFixed(2) / 1);
-   			state.generators[i].quantiy += 1;
-   		}
-   		}
-   		var cID = action.payload[0];
-   	var cCurCost = action.payload[1];
-   	var cBaseCost = action.payload[2];
-   	var growth = 1 + 0.05;
-   	state.counter -= cCurCost; //this is the cost
-   	state.generators[cID].quantity += 1;
-   	var quantity = state.generators[cID].quantity;
-   	state.generators[cID].cost = (cBaseCost * Math.pow(growth, quantity)).toFixed(2) / 1;
-   	//console.log('cost is',  this.default.growthRatio);
-   	console.log('can buy Generator');
-   	} else {
-   	console.log('cant buy generator');
-   }
-   */
+			return state;
+		case 'INCREMENT':
+			console.log('Incrementing by', action.payload);
+			state.counter += action.payload;
+			return state;
+		case 'CHECK_STORY':
+			console.log('Checking Story');
+			for (var i = 0; i < state.story.length; i++) {
+				if (state.story[i].state == 'hidden') {
+					//too lazy to google how an and comparison works
+					if (state.counter >= state.story[i].triggeredAt) {
+						state.story[i].state = 'visible';
+						console.log(state.story[i].name);
+					}
+				}
+			}
 			return state;
 		default:
 			return state;
@@ -837,7 +860,9 @@ exports.default = {
 	actions: {
 		EXAMPLE: 'EXAMPLE_MUTATION',
 		MINE_BUTTON: 'MINE_BUTTON',
-		BUY_GENERATOR: 'BUY_GENERATOR'
+		BUY_GENERATOR: 'BUY_GENERATOR',
+		INCREMENT: 'INCREMENT',
+		CHECK_STORY: 'CHECK_STORY'
 	}
 };
 
@@ -1000,7 +1025,7 @@ exports.default = function (store) {
 			const curCost = (baseCost * Math.pow(1 + 0.05, quant)).toFixed(2) / 1;
 			this.innerHTML = `
 			<div class="generator-container">
-				<h3>${name}</h3>
+				<h3>${curName}</h3>
 				<p>${quant}</p>
 				<p>${desc}</p>
 				<div class="gen-con-bottom-row-info">
@@ -1026,13 +1051,13 @@ exports.default = function (store) {
 			//this.innerHTML = `<p>${store.state.generators[this.id].name}</p>`;
 			let thisID = this.id;
 			const curName = store.state.generators[this.id].name;
-			let quant = 1;
+			let quant = 0;
 			const desc = store.state.generators[this.id].description;
 			const rate = store.state.generators[this.id].rate + '/60';
 			const baseCost = store.state.generators[this.id].baseCost;
 			this.innerHTML = `
 			<div class="generator-container">
-				<h3>${name}</h3>
+				<h3>${curName}</h3>
 				<p>${quant}</p>
 				<p>${desc}</p>
 				<div class="gen-con-bottom-row-info">
@@ -1047,8 +1072,9 @@ exports.default = function (store) {
 					type: 'BUY_GENERATOR',
 					payload: {
 						name: curName,
-						quantity: quant //tried doing JSON, but couldn't format it correctly
-					} });
+						quantity: 1
+					}
+				});
 			});
 
 			this.store.subscribe(this.onStateChange);
@@ -1078,16 +1104,55 @@ exports.default = function (store) {
 		constructor() {
 			super();
 			this.store = store;
+			// TODO: initial DOM rendering of story itself
 
 			this.onStateChange = this.handleStateChange.bind(this);
 		}
 
 		handleStateChange(newState) {
 			// TODO: display story based on the state "resource" and "stories"
+			var htmlToReplace = `
+			<div class="story-book">
+				<p>Got Ores? Click on the button to mine one.</p>
+			`;
+
+			for (var i = 0; i < store.state.story.length; i++) {
+				if (store.state.story[i].state == 'visible') {
+					const storyToAdd = store.state.story[i].name;
+					htmlToReplace += `<p>${storyToAdd}</p>`;
+				}
+			}
+			htmlToReplace += `
+				<p>More story to come...</p>
+			</div>
+			`;
+			this.innerHTML = htmlToReplace;
+			/*
+   this.innerHTML = `
+   <div class="story-book">
+   	<p>Got Ores? Click on the button to mine one.</p>
+   `;
+   for(var i = 0 ; i < store.state.story.length ; i++){
+   	if(store.state.story[i].state == 'visible'){
+   		const storyToAdd = store.state.story[i].name;
+   		this.innerHTML += `<p>${storyToAdd}</p>`;
+   	}
+   }
+   this.innerHTML += `
+   	<p>More story to come...</p>
+   </div>
+   `;
+   */
 		}
 
 		connectedCallback() {
 			this.store.subscribe(this.onStateChange);
+			this.innerHTML = `
+			<div class="story-book">
+				<p>Got Ores? Click on the button to mine one.</p>
+				<p>More story to come...</p>
+			</div>
+			`;
 		}
 
 		disconnectedCallback() {

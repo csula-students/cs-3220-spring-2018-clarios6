@@ -26,7 +26,7 @@ export default function (store) {
 			const curCost = (baseCost * Math.pow((1 + 0.05), quant)).toFixed(2) / 1;
 			this.innerHTML = `
 			<div class="generator-container">
-				<h3>${name}</h3>
+				<h3>${curName}</h3>
 				<p>${quant}</p>
 				<p>${desc}</p>
 				<div class="gen-con-bottom-row-info">
@@ -53,13 +53,13 @@ export default function (store) {
 			//this.innerHTML = `<p>${store.state.generators[this.id].name}</p>`;
 			let thisID = this.id;
 			const curName = store.state.generators[this.id].name;
-			let quant = 1;
+			let quant = 0;
 			const desc = store.state.generators[this.id].description;
 			const rate = store.state.generators[this.id].rate + '/60';
 			const baseCost = store.state.generators[this.id].baseCost;
 			this.innerHTML = `
 			<div class="generator-container">
-				<h3>${name}</h3>
+				<h3>${curName}</h3>
 				<p>${quant}</p>
 				<p>${desc}</p>
 				<div class="gen-con-bottom-row-info">
@@ -74,8 +74,8 @@ export default function (store) {
 					type: 'BUY_GENERATOR',
 					payload: {
 						name: curName,
-						quantity: quant
-					} //tried doing JSON, but couldn't format it correctly
+						quantity: 1
+					}
 				});
 			});
 

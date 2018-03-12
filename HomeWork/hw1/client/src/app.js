@@ -82,7 +82,7 @@ function main () {
 				type: 'autonomous',
 				name: 'Slave',
 				description: 'A run of the mill slave it generates one ore per minute',
-				rate: 1,
+				rate: 5,
 				quantity: 0,
 				baseCost: 10,
 				unlockValue: 10
@@ -93,7 +93,7 @@ function main () {
 				description: 'An expensive robot that generates 10 ores per minute',
 				rate: 10,
 				quantity: 0,
-				baseCost: 20,
+				baseCost: 15,
 				unlockValue: 30
 			},
 			{
@@ -106,7 +106,26 @@ function main () {
 				unlockValue:100
 			}
 		],
-		story: []
+		story: [
+			{
+				name: 'Slave shows up',
+				description: 'Slave mining ores',
+				triggeredAt: 10,
+				state: 'hidden'
+			},
+			{
+				name: 'Robots are invented',
+				description: 'Robots mine faster than slaves',
+				triggeredAt: 15,
+				state: 'hidden'
+			},
+			{
+				name: 'Advanced Robots created',
+				description: 'Advanced Robots just do it better',
+				triggeredAt: 20,
+				state: 'hidden'
+			},
+		]
 	};
 
 	// initialize store
