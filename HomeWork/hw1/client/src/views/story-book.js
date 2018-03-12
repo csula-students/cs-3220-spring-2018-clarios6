@@ -10,6 +10,39 @@ export default function (store) {
 
 		handleStateChange (newState) {
 			// TODO: display story based on the state "resource" and "stories"
+			var htmlToReplace =
+			`
+			<div class="story-book">
+				<p>Got Ores? Click on the button to mine one.</p>
+			`;
+
+			for(var i = 0 ; i < store.state.story.length ; i++){
+				if(store.state.story[i].state == 'visible'){
+					const storyToAdd = store.state.story[i].name;
+					htmlToReplace += `<p>${storyToAdd}</p>`;
+				}
+			}
+			htmlToReplace += `
+				<p>More story to come...</p>
+			</div>
+			`;
+			this.innerHTML = htmlToReplace;
+			/*
+			this.innerHTML = `
+			<div class="story-book">
+				<p>Got Ores? Click on the button to mine one.</p>
+			`;
+			for(var i = 0 ; i < store.state.story.length ; i++){
+				if(store.state.story[i].state == 'visible'){
+					const storyToAdd = store.state.story[i].name;
+					this.innerHTML += `<p>${storyToAdd}</p>`;
+				}
+			}
+			this.innerHTML += `
+				<p>More story to come...</p>
+			</div>
+			`;
+			*/
 		}
 
 		connectedCallback () {
@@ -17,8 +50,6 @@ export default function (store) {
 			this.innerHTML = `
 			<div class="story-book">
 				<p>Got Ores? Click on the button to mine one.</p>
-				<p>Your ores are pretty valuable</p>
-				<p>O is for ores, and ores are pretty neat.</p>
 				<p>More story to come...</p>
 			</div>
 			`;

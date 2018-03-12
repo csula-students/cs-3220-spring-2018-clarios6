@@ -30,7 +30,9 @@ export function loop (store) {
 	// hint: use store.dispatch to send event for changing events state
 	console.log('Story Amount', store.state.story.length);
 	for(var i = 0 ; i < store.state.story.length ; i++){
-		
+		store.dispatch({
+			type: 'CHECK_STORY'
+		});
 	}
 
 
