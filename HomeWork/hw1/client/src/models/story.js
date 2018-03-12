@@ -18,7 +18,11 @@ export default class Story {
 	 */
 	isUnlockYet (value) {
 		// TODO: implement based on doc
-		return false;
+		var isUlockable = false;
+		if(value >= this.triggeredAt){
+			isUlockable = true;
+		}
+		return isUlockable;
 	}
 
 	/**
@@ -26,5 +30,6 @@ export default class Story {
 	 */
 	unlock () {
 		// TODO: change the story state to "visible"
+		this.state = 'visible';
 	}
 }

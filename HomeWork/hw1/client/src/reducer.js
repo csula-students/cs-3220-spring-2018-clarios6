@@ -36,7 +36,6 @@ export default function reducer (state, action) {
 				if(state.counter >= state.story[i].triggeredAt){
 					state.story[i].state = 'visible';
 					console.log(state.story[i].name);
-					console.log(state.story[i].state);
 				}
 			}
 		}
