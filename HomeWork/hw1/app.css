@@ -5,9 +5,11 @@ body{
   font-family: 'Roboto Condensed', sans-serif;
 }
 .story-book{
+  height: 5.5em;
   background-color: black;
   color: white;
   overflow: auto;
+
 }
 .manual-generator{
   display: flex;
