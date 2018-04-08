@@ -40,9 +40,8 @@ public class EventsDAOImpl implements EventsDAO {
 	@Override
 	public List<Event> getAll() {
 		// TODO: read a list of events from context
-		ArrayList<Event> events = (ArrayList<Event>) this.context.getAttribute(CONTEXT_NAME);
-		if(events.size() != 0){
-			return events;
+		if(this.context.getAttribute(CONTEXT_NAME) != null){
+			return (ArrayList<Event>) this.context.getAttribute(CONTEXT_NAME);
 		}
 		return new ArrayList<>();
 	}
