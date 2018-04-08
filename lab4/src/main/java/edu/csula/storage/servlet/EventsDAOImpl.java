@@ -40,6 +40,10 @@ public class EventsDAOImpl implements EventsDAO {
 	@Override
 	public List<Event> getAll() {
 		// TODO: read a list of events from context
+		ArrayList<Event> events = (ArrayList<Event>) this.context.getAttribute(CONTEXT_NAME);
+		if(events.size() != 0){
+			return events;
+		}
 		return new ArrayList<>();
 	}
 
@@ -58,6 +62,12 @@ public class EventsDAOImpl implements EventsDAO {
 	@Override
 	public void add(Event event) {
 		// TODO: add a new event to the context
+		ArrayList<Event> events = new ArrayList<>();
+		if(this.context.getAttribute(CONTEXT_NAME) != null){
+			events = (ArrayList<Event>) this.context.getAttribute(CONTEXT_NAME);
+		}
+		events.add(event);
+		context.setAttribute(CONTEXT_NAME, events);
 	}
 
 	@Override
