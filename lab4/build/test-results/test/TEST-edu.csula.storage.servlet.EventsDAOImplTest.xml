@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="edu.csula.storage.servlet.EventsDAOImplTest" tests="6" skipped="0" failures="3" errors="0" timestamp="2018-04-14T21:21:55" hostname="carlos-Inspiron-13-7353" time="0.488">
+<testsuite name="edu.csula.storage.servlet.EventsDAOImplTest" tests="6" skipped="0" failures="3" errors="0" timestamp="2018-04-14T21:28:15" hostname="carlos-Inspiron-13-7353" time="0.488">
   <properties/>
-  <testcase name="getAll" classname="edu.csula.storage.servlet.EventsDAOImplTest" time="0.476">
+  <testcase name="getAll" classname="edu.csula.storage.servlet.EventsDAOImplTest" time="0.482">
     <failure message="org.mockito.exceptions.verification.TooManyActualInvocations: &#10;servletContext.getAttribute(&quot;events&quot;);&#10;Wanted 1 time:&#10;-&gt; at edu.csula.storage.servlet.EventsDAOImplTest.getAll(EventsDAOImplTest.java:48)&#10;But was 2 times:&#10;-&gt; at edu.csula.storage.servlet.EventsDAOImpl.getAll(EventsDAOImpl.java:43)&#10;-&gt; at edu.csula.storage.servlet.EventsDAOImpl.getAll(EventsDAOImpl.java:44)&#10;&#10;" type="org.mockito.exceptions.verification.TooManyActualInvocations">org.mockito.exceptions.verification.TooManyActualInvocations: 
 servletContext.getAttribute(&quot;events&quot;);
 Wanted 1 time:
@@ -62,7 +62,7 @@ But was 2 times:
 </failure>
   </testcase>
   <testcase name="remove" classname="edu.csula.storage.servlet.EventsDAOImplTest" time="0.001"/>
-  <testcase name="getById" classname="edu.csula.storage.servlet.EventsDAOImplTest" time="0.006">
+  <testcase name="getById" classname="edu.csula.storage.servlet.EventsDAOImplTest" time="0.002">
     <failure message="org.mockito.exceptions.verification.TooManyActualInvocations: &#10;servletContext.getAttribute(&quot;events&quot;);&#10;Wanted 1 time:&#10;-&gt; at edu.csula.storage.servlet.EventsDAOImplTest.getById(EventsDAOImplTest.java:73)&#10;But was 2 times:&#10;-&gt; at edu.csula.storage.servlet.EventsDAOImpl.getById(EventsDAOImpl.java:53)&#10;-&gt; at edu.csula.storage.servlet.EventsDAOImpl.getById(EventsDAOImpl.java:55)&#10;&#10;" type="org.mockito.exceptions.verification.TooManyActualInvocations">org.mockito.exceptions.verification.TooManyActualInvocations: 
 servletContext.getAttribute(&quot;events&quot;);
 Wanted 1 time:
