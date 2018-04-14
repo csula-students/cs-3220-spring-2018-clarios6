@@ -68,6 +68,12 @@ public class EventsDAOImpl implements EventsDAO {
 	@Override
 	public void set(int id, Event event) {
 		// TODO: set a certain event given id to be different from context
+		ArrayList<Event> events = (ArrayList<Event>) this.context.getAttribute(CONTEXT_NAME);
+		for(Event e : events){
+			if(e.equals(events)){
+				e.setId(id);
+			}
+		}
 
 
 	}
