@@ -52,8 +52,8 @@ public class EventsDAOImpl implements EventsDAO {
 		// TODO: get a certain event given its id from context (see getAll() on
 		// getting a list first and get a certain one from the list)
 		Optional<Event> isEvent = Optional.empty();
-		if(this.context.getAttribute(CONTEXT_NAME) != null){
-			ArrayList<Event> events = (ArrayList<Event>) this.context.getAttribute(CONTEXT_NAME);
+		ArrayList<Event> events = (ArrayList<Event>) this.context.getAttribute(CONTEXT_NAME);
+		if(events != null){
 			for(Event es : events){
 				if(es.getId() == id){
 					isEvent = Optional.of(es);
