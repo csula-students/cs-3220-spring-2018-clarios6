@@ -89,18 +89,3 @@ DELETE FROM Events
   WHERE name = "sample event";
 
 SELECT * FROM Events;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
---
