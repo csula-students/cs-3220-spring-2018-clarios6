@@ -40,7 +40,7 @@ public class EventsDAOImpl implements EventsDAO {
 	@Override
 	public List<Event> getAll() {
 		// TODO: read a list of events from context
-		ArrayList<Event> events = (ArrayList<Event>) this.context.getAttribute(CONTEXT_NAME);
+		List<Event> events = (ArrayList<Event>) this.context.getAttribute(CONTEXT_NAME);
 		if(events != null){
 			return events;
 		}
@@ -52,7 +52,7 @@ public class EventsDAOImpl implements EventsDAO {
 		// TODO: get a certain event given its id from context (see getAll() on
 		// getting a list first and get a certain one from the list)
 		Optional<Event> isEvent = Optional.empty();
-		ArrayList<Event> events = (ArrayList<Event>) this.context.getAttribute(CONTEXT_NAME);
+		List<Event> events = (ArrayList<Event>) this.context.getAttribute(CONTEXT_NAME);
 		if(events != null){
 			for(Event es : events){
 				if(es.getId() == id){
@@ -67,7 +67,7 @@ public class EventsDAOImpl implements EventsDAO {
 	@Override
 	public void set(int id, Event event) {
 		// TODO: set a certain event given id to be different from context
-		List<Event> events = (List<Event>) this.context.getAttribute(CONTEXT_NAME);
+		List<Event> events = (ArrayList<Event>) this.context.getAttribute(CONTEXT_NAME);
 		for(int i = 0 ; i < events.size() ; i++){
 			if(events.get(i).getId() == id){
 				events.set(i, event);
@@ -78,7 +78,7 @@ public class EventsDAOImpl implements EventsDAO {
 	@Override
 	public void add(Event event) {
 		// TODO: add a new event to the context
-		ArrayList<Event> events = new ArrayList<>();
+		List<Event> events = new ArrayList<>();
 		if(this.context.getAttribute(CONTEXT_NAME) != null){
 			events = (ArrayList<Event>) this.context.getAttribute(CONTEXT_NAME);
 		}
@@ -89,7 +89,7 @@ public class EventsDAOImpl implements EventsDAO {
 	@Override
 	public void remove(int id) {
 		// TODO: remove a single event given id
-		ArrayList<Event> events = (ArrayList<Event>) this.context.getAttribute(CONTEXT_NAME);
+		List<Event> events = (ArrayList<Event>) this.context.getAttribute(CONTEXT_NAME);
 		for(int i = 0 ; i < events.size() ; i++ ){
 			if(events.get(i).getId() == id){
 				events.remove(i);

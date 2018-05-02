@@ -2,7 +2,7 @@ package edu.csula.web;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.Collection;
+import java.util.*;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -41,14 +41,14 @@ public class AdminEventsServlet extends HttpServlet {
 		html += "    </nav>";
 		html += "    <div id=\"wrap\">";
 		html += "      <div class=\"add-event\">";
-		html += "        <form>";
-		html += "          <label for=\"event-name\">Event Name</label></br>";
-		html += "          <input id=\"event-name\" type=\"text\" placeholder=\"Grandma\"></br>";
-		html += "          <label for=\"event-description\">Event Description</label></br>";
-		html += "          <input id=\"event-description\" type=\"text\" placeholder=\"Lorem ...\"></br>";
-		html += "          <label for=\"trigger-at\">Trigger At</label></br>";
-		html += "          <input id=\"trigger-at\" type=\"text\" placeholder=\"10\"></br>";
-		html += "          <button id=\"add-edit-button\">{Add|Edit}</button>";
+		html += "        <form method=\"POST\">";
+		html += "          <label for=\"eventname\">Event Name</label></br>";
+		html += "          <input name=\"eventname\" type=\"text\" placeholder=\"Grandma\"></br>";
+		html += "          <label for=\"eventdescription\">Event Description</label></br>";
+		html += "          <input name=\"eventdescription\" type=\"text\" placeholder=\"Lorem ...\"></br>";
+		html += "          <label for=\"triggerat\">Trigger At</label></br>";
+		html += "          <input name=\"triggerat\" type=\"text\" placeholder=\"10\"></br>";
+		html += "          <button >{Add|Edit}</button>";
 		html += "        </form>";
 		html += "      </div>";
 		html += "      <div class=\"event-table\">";
@@ -74,21 +74,28 @@ public class AdminEventsServlet extends HttpServlet {
 		html += "  </div>";
 		html += " </body>";
 		html += "</html>";
-		
-		System.out.println(html);
+
+		out.println(html);
 	}
 
 
 	@Override
 	public void doPost( HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO: handle upsert transaction
-		int id = Integer.parseInt((String) request.getAttribute("id"));
-		String name = (String) request.getAttribute("name");
-		String desc = (String) request.getAttribute("desc");
-		int trigger = Integer.parseInt((String) (request.getAttribute("triggerAt")));
-		
-		
+		EventsDAO dao = new EventsDAOImpl(getServletContext());
+		Collection<Event> events = dao.getAll();
+
+		int id = events.size();
+		String name = request.getParameter("eventname");
+		String desc = request.getParameter("eventdescription");
+		int triggerAt = Integer.parseInt(request.getParameter("triggerat"));
+		System.out.println("LOL");
+		Event nEvent = new Event(id, name, desc, triggerAt);
+		dao.add(nEvent);
+
+		response.sendRedirect("/admin/events");
+
 
 	}
-	
+
 }
