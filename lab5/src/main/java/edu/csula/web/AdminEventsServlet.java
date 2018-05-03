@@ -48,7 +48,7 @@ public class AdminEventsServlet extends HttpServlet {
 
 		//request.setAttribute("e", events);
 		//request.getRequestDispatcher("/WEB-INF/adminevents.jsp").forward(request, response);
-		response.sendRedirect("/admin/events");
+		response.sendRedirect("../admin/events");
 		//response.sendRedirect("/admin/events");
 
 

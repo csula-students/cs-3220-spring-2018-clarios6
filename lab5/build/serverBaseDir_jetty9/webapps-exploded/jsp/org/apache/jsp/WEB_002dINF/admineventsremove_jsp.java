@@ -54,7 +54,7 @@ public final class admineventsremove_jsp extends org.apache.jasper.runtime.HttpJ
       out.write("    </style>\n");
       out.write("  </head>\n");
       out.write("  <body>\n");
-      out.write("    <form class=\"button\" action=\"/admin/events\">\n");
+      out.write("    <form class=\"button\" action=\"../events\">\n");
       out.write("      <input type=\"submit\" value=\"Return to Events\">\n");
       out.write("    </form>\n");
       out.write("  </body>\n");

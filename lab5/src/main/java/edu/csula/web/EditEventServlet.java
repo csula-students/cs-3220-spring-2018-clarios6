@@ -56,6 +56,6 @@ public class EditEventServlet extends HttpServlet {
 		edEvent.setTriggerAt(Integer.parseInt(request.getParameter("triggerat")));
 		System.out.println("Edit Event");
 
-		response.sendRedirect("/admin/events");
+		response.sendRedirect("../events");
 	}
 }

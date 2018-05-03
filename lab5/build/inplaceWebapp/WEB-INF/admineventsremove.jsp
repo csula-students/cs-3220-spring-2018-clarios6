@@ -11,7 +11,7 @@
     </style>
   </head>
   <body>
-    <form class="button" action="/admin/events">
+    <form class="button" action="../events">
       <input type="submit" value="Return to Events">
     </form>
   </body>
