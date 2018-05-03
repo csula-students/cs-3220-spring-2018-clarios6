@@ -3,8 +3,30 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" type="text/css" href="../app.css">
+    <!--<link rel="stylesheet" type="text/css" href="../app.css">-->
     <title>Incremental Game</title>
+    <style media="screen">
+    body{
+      background-color: #7FFF00;
+    }
+
+    #wrap{
+      float: left;
+    }
+    .add-event{
+      float: left;
+    }
+    .event-table{
+      float: right;
+      text-align: left;
+      padding-left: 100px;
+    }
+
+    th, td{
+      border: 1px solid #00FFFF;
+      padding: 10px;
+    }
+    </style>
   </head>
   <body>
     <h1>Incremental Game Framework</h1>
@@ -43,7 +65,7 @@
                 <td>${ev.getDescription()}</td>
                 <td>${ev.getTriggerAt()}</td>
                 <td>
-                  <a href="#">Edit</a>|<a href="../admin/events/delete?id=${ev.getId()}">Delete</a>
+                  <a href="../admin/events/edit?id=${ev.getId()}">Edit</a>|<a href="../admin/events/delete?id=${ev.getId()}">Delete</a>
                 </td>
               </tr>
             </c:forEach>

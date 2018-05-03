@@ -33,6 +33,6 @@ public class DeleteEventServlet extends HttpServlet {
       }
     }
     events.remove(index);
-		response.sendRedirect("/admin/events");
+		request.getRequestDispatcher("/WEB-INF/admineventsremove.jsp").forward(request,response);
 	}
 }

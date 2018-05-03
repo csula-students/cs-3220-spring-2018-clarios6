@@ -1,5 +1,5 @@
 body{
-  background-color: #7FFF00
+  background-color: #7FFF00;
 }
 
 #wrap{
@@ -15,5 +15,6 @@ body{
 }
 
 th, td{
-  border-bottom: 1px solid #00FFFF
+  border: 1px solid #00FFFF;
+  padding: 10px;
 }

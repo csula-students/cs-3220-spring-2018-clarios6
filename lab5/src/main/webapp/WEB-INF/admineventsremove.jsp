@@ -4,8 +4,15 @@
     <meta charset="utf-8">
     <link rel="stylesheet" type="text/css" href="../app.css">
     <title>Incremental Game</title>
+    <style media="screen">
+      body{
+        background-color: #7FFF00;
+      }
+    </style>
   </head>
   <body>
-    <a href="#">Go Back to Event Menu</a>
+    <form class="button" action="/admin/events">
+      <input type="submit" value="Return to Events">
+    </form>
   </body>
 </html>
