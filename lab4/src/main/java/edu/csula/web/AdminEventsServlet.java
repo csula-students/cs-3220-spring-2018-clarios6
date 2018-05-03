@@ -29,7 +29,7 @@ public class AdminEventsServlet extends HttpServlet {
 		html += "	<html lang=\"en\">";
 		html += "  <head>";
 		html += "    <meta charset=\"UTF-8\">";
-		html += "    <link rel=\"stylesheet\" type=\"text/css\" href=\"admin-generators-styles.css\">";
+		html += "    <link rel=\"stylesheet\" type=\"text/css\" href=\"adminstyles.css\">";
 		html += "    <title>Incremental Game</title>";
 		html += "  </head>";
 		html += "  <body>";
@@ -63,9 +63,12 @@ public class AdminEventsServlet extends HttpServlet {
 		html += "          <tbody>";
 		for(Event e : events) {
 			html += "            <tr>";
+			html += "              <td>" + e.getId() + "</td>";
 			html += "              <td>" + e.getName() + "</td>";
 			html += "              <td>" + e.getDescription() + "</td>";
 			html += "              <td>" + e.getTriggerAt() + "</td>";
+			html += "							 <td><a href=\"/admin/events/edit?id=" + e.getId() + "\">Edit</a> ";
+			html += "							<a href=\"/admin/events/delete?id=" + e.getId() + "\">Delete</a></td>";
 			html += "            </td>";
 		}
 		html += "        </tbody>";
@@ -89,7 +92,7 @@ public class AdminEventsServlet extends HttpServlet {
 		String name = request.getParameter("eventname");
 		String desc = request.getParameter("eventdescription");
 		int triggerAt = Integer.parseInt(request.getParameter("triggerat"));
-		System.out.println("LOL");
+		System.out.println("AddEvent");
 		Event nEvent = new Event(id, name, desc, triggerAt);
 		dao.add(nEvent);
 
