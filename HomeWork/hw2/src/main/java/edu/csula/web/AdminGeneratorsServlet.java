@@ -2,11 +2,18 @@ package edu.csula.web;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.*;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpServletRequest;
+
+import edu.csula.storage.servlet.GeneratorsDAOImpl;
+import edu.csula.storage.GeneratorsDAO;
+import edu.csula.models.Generator;
 
 @WebServlet("/admin/generators")
 public class AdminGeneratorsServlet extends HttpServlet {
@@ -15,12 +22,28 @@ public class AdminGeneratorsServlet extends HttpServlet {
 		response.setContentType("text/html");
 		PrintWriter out = response.getWriter();
 		// TODO: render the generators page HTML
-		out.println("<h1>Hello generators servlet!</h1>");
+		GeneratorsDAO dao = new GeneratorsDAOImpl(getServletContext());
+		Collection<Generator> gens = dao.getAll();
+		request.setAttribute("g", gens);
+		request.getRequestDispatcher("/WEB-INF/admingen.jsp").forward(request, response);
 	}
 
 
 	@Override
 	public void doPost( HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO: handle upsert transaction
+		GeneratorsDAO dao = new GeneratorsDAOImpl(getServletContext());
+		Collection<Generator> gens = dao.getAll();
+
+		int id = gens.size();
+		String name = request.getParameter("generatorname");
+		String desc = request.getParameter("description");
+		int rate = Integer.parseInt(request.getParameter("generatorrate"));
+		int baseCost = Integer.parseInt(request.getParameter("basecost"));
+		int unlock = Integer.parseInt(request.getParameter("unlockat"));
+
+		Generator nGen = new Generator(id, name, desc, rate, baseCost, unlock);
+		dao.add(nGen);
+		response.sendRedirect("../admin/generators");
 	}
 }

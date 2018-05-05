@@ -9,6 +9,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.RequestDispatcher;
 
 import edu.csula.storage.servlet.EventsDAOImpl;
 import edu.csula.storage.EventsDAO;
@@ -19,15 +20,6 @@ public class EditEventServlet extends HttpServlet {
 	@Override
 	public void doGet( HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
     response.setContentType("text/html");
-		String html = "";
-    html += "<!DOCTYPE html>";
-		html += "	<html lang=\"en\">";
-		html += "  <head>";
-		html += "    <meta charset=\"UTF-8\">";
-		html += "    <link rel=\"stylesheet\" type=\"text/css\" href=\"admin-generators-styles.css\">";
-		html += "    <title>Incremental Game</title>";
-		html += "  </head>";
-		html += "  <body>";
 		PrintWriter out = response.getWriter();
 		// TODO: render the events page HTML
 		int id = Integer.parseInt(request.getParameter("id"));
@@ -40,25 +32,8 @@ public class EditEventServlet extends HttpServlet {
         break;
       }
     }
-    html += "<h1>Editing Event</h1>";
-    html += "        <form method=\"POST\">";
-		html += "          <label for=\"eventname\">Event Name</label></br>";
-		html += "          <input name=\"eventname\" type=\"text\" placeholder=\"Grandma\"></br>";
-		html += "          <label for=\"eventdescription\">Event Description</label></br>";
-		html += "          <input name=\"eventdescription\" type=\"text\" placeholder=\"Lorem ...\"></br>";
-		html += "          <label for=\"triggerat\">Trigger At</label></br>";
-		html += "          <input name=\"triggerat\" type=\"text\" placeholder=\"10\"></br>";
-		html += "          <button >{Add|Edit}</button>";
-		html += "        </form>";
-    html += "            <div>";
-    html += "              <a>" + edEvent.getId() + "</a>";
-    html += "              <a>" + edEvent.getName() + "</a>";
-    html += "              <a>" + edEvent.getDescription() + "</a>";
-    html += "              <a>" + edEvent.getTriggerAt() + "</a>";
-    html += "            </div>";
-    html += " </body>";
-    html += "</html>";
-    out.println(html);
+		request.setAttribute("ev", edEvent);
+		request.getRequestDispatcher("/WEB-INF/admineventsedit.jsp").forward(request, response);
 	}
 
 
@@ -81,6 +56,6 @@ public class EditEventServlet extends HttpServlet {
 		edEvent.setTriggerAt(Integer.parseInt(request.getParameter("triggerat")));
 		System.out.println("Edit Event");
 
-		response.sendRedirect("/admin/events");
+		response.sendRedirect("../events");
 	}
 }

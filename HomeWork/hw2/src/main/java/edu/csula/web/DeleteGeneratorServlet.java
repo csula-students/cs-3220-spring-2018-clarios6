@@ -9,30 +9,22 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.RequestDispatcher;
 
 import edu.csula.storage.servlet.EventsDAOImpl;
 import edu.csula.storage.EventsDAO;
 import edu.csula.models.Event;
 
-@WebServlet("/admin/events/delete")
-public class DeleteEventServlet extends HttpServlet {
-	@Override
+@WebServlet("/hello")
+public class HelloServlet extends HttpServlet {
 	public void doGet( HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		response.setContentType("text/html");
 		PrintWriter out = response.getWriter();
-		// TODO: render the generators page HTML
-    int id = Integer.parseInt(request.getParameter("id"));
+		GeneratorsDAO dao = new GeneratorsDAOImpl(getServletContext());
+    Collection<Generators> gens = dao.getAll();
     int index = -1;
-		EventsDAO dao = new EventsDAOImpl(getServletContext());
-    List<Event> events = dao.getAll();
+    int id = Integer.parseInt(reques.getParameter("id"));
     for(int i = 0 ; i < events.size() ; i++){
-      if(events.get(i).getId() == id){
-        index = i;
-        break;
-      }
+      if(events.get(i).getId() == id)
     }
-    events.remove(index);
-		request.getRequestDispatcher("/WEB-INF/admineventsremove.jsp").forward(request,response);
 	}
 }

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="edu.csula.storage.servlet.UsersDAOImplTest" tests="3" skipped="0" failures="3" errors="0" timestamp="2018-05-04T03:26:23" hostname="carlos-Inspiron-13-7353" time="1.112">
+<testsuite name="edu.csula.storage.servlet.UsersDAOImplTest" tests="3" skipped="0" failures="3" errors="0" timestamp="2018-05-04T03:34:51" hostname="carlos-Inspiron-13-7353" time="0.42">
   <properties/>
-  <testcase name="logout" classname="edu.csula.storage.servlet.UsersDAOImplTest" time="1.097">
+  <testcase name="logout" classname="edu.csula.storage.servlet.UsersDAOImplTest" time="0.412">
     <failure message="java.lang.AssertionError: expected:&lt;true&gt; but was:&lt;false&gt;" type="java.lang.AssertionError">java.lang.AssertionError: expected:&lt;true&gt; but was:&lt;false&gt;
 	at org.junit.Assert.fail(Assert.java:88)
 	at org.junit.Assert.failNotEquals(Assert.java:834)
@@ -57,7 +57,7 @@
 	at java.lang.Thread.run(Thread.java:748)
 </failure>
   </testcase>
-  <testcase name="getAuthenticatedUser" classname="edu.csula.storage.servlet.UsersDAOImplTest" time="0.003">
+  <testcase name="getAuthenticatedUser" classname="edu.csula.storage.servlet.UsersDAOImplTest" time="0.001">
     <failure message="java.util.NoSuchElementException: No value present" type="java.util.NoSuchElementException">java.util.NoSuchElementException: No value present
 	at java.util.Optional.get(Optional.java:135)
 	at edu.csula.storage.servlet.UsersDAOImplTest.getAuthenticatedUser(UsersDAOImplTest.java:57)
@@ -110,7 +110,7 @@
 	at java.lang.Thread.run(Thread.java:748)
 </failure>
   </testcase>
-  <testcase name="authenticate" classname="edu.csula.storage.servlet.UsersDAOImplTest" time="0.011">
+  <testcase name="authenticate" classname="edu.csula.storage.servlet.UsersDAOImplTest" time="0.006">
     <failure message="java.lang.AssertionError: expected:&lt;true&gt; but was:&lt;false&gt;" type="java.lang.AssertionError">java.lang.AssertionError: expected:&lt;true&gt; but was:&lt;false&gt;
 	at org.junit.Assert.fail(Assert.java:88)
 	at org.junit.Assert.failNotEquals(Assert.java:834)
