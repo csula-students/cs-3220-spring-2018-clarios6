@@ -27,7 +27,7 @@
           <input id="unlockat" name="unlockat" type="text" placeholder="Unlock At"></br>
           <label for="description">Description</label></br>
           <input id="description" name="description" type="text" placeholder="Text"></br>
-          <button id="addeditbutton">{Add|Edit}</button>
+          <button id="addeditbutton">{Add}</button>
         </form>
       </div>
       <div class="event-table">
@@ -48,7 +48,7 @@
                 <td>${gen.getRate()}</td>
                 <td>${gen.getBaseCost()}</td>
                 <td>${gen.getUnlockAt()}</td>
-                <td> <a href="#">Edit</a> | <a href="../admin/generator/delete?id=${gen.getId()}">Delete</a></td>
+                <td> <a href="../admin/generators/edit?id=${gen.getId()}">Edit</a> | <a href="../admin/generator/delete?id=${gen.getId()}">Delete</a></td>
               </td>
             </c:forEach>
           </tbody>

@@ -80,7 +80,7 @@ public final class admingen_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("          <input id=\"unlockat\" name=\"unlockat\" type=\"text\" placeholder=\"Unlock At\"></br>\n");
       out.write("          <label for=\"description\">Description</label></br>\n");
       out.write("          <input id=\"description\" name=\"description\" type=\"text\" placeholder=\"Text\"></br>\n");
-      out.write("          <button id=\"addeditbutton\">{Add|Edit}</button>\n");
+      out.write("          <button id=\"addeditbutton\">{Add}</button>\n");
       out.write("        </form>\n");
       out.write("      </div>\n");
       out.write("      <div class=\"event-table\">\n");
@@ -147,7 +147,9 @@ public final class admingen_jsp extends org.apache.jasper.runtime.HttpJspBase
           out.write("                <td>");
           out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${gen.getUnlockAt()}", java.lang.String.class, (PageContext)_jspx_page_context, null));
           out.write("</td>\n");
-          out.write("                <td> <a href=\"#\">Edit</a> | <a href=\"../admin/generator/delete?id=");
+          out.write("                <td> <a href=\"../admin/generators/edit?id=");
+          out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${gen.getId()}", java.lang.String.class, (PageContext)_jspx_page_context, null));
+          out.write("\">Edit</a> | <a href=\"../admin/generator/delete?id=");
           out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${gen.getId()}", java.lang.String.class, (PageContext)_jspx_page_context, null));
           out.write("\">Delete</a></td>\n");
           out.write("              </td>\n");
