@@ -48,7 +48,7 @@
                 <td>${gen.getRate()}</td>
                 <td>${gen.getBaseCost()}</td>
                 <td>${gen.getUnlockAt()}</td>
-                <td> <a href="#">Edit</a> | <a href="#">Delete</a></td>
+                <td> <a href="#">Edit</a> | <a href="../admin/generator/delete?id=${gen.getId()}">Delete</a></td>
               </td>
             </c:forEach>
           </tbody>

@@ -147,7 +147,9 @@ public final class admingen_jsp extends org.apache.jasper.runtime.HttpJspBase
           out.write("                <td>");
           out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${gen.getUnlockAt()}", java.lang.String.class, (PageContext)_jspx_page_context, null));
           out.write("</td>\n");
-          out.write("                <td> <a href=\"#\">Edit</a> | <a href=\"#\">Delete</a></td>\n");
+          out.write("                <td> <a href=\"#\">Edit</a> | <a href=\"../admin/generator/delete?id=");
+          out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${gen.getId()}", java.lang.String.class, (PageContext)_jspx_page_context, null));
+          out.write("\">Delete</a></td>\n");
           out.write("              </td>\n");
           out.write("            ");
           int evalDoAfterBody = _jspx_th_c_forEach_0.doAfterBody();
