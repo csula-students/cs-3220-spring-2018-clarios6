@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="edu.csula.storage.servlet.GeneratorsDAOImplTest" tests="6" skipped="0" failures="0" errors="0" timestamp="2018-05-04T03:34:52" hostname="carlos-Inspiron-13-7353" time="0.193">
+<testsuite name="edu.csula.storage.servlet.GeneratorsDAOImplTest" tests="6" skipped="0" failures="0" errors="0" timestamp="2018-05-08T20:09:56" hostname="carlos-Inspiron-13-7353" time="0.149">
   <properties/>
-  <testcase name="getAll" classname="edu.csula.storage.servlet.GeneratorsDAOImplTest" time="0.186"/>
+  <testcase name="getAll" classname="edu.csula.storage.servlet.GeneratorsDAOImplTest" time="0.144"/>
   <testcase name="remove" classname="edu.csula.storage.servlet.GeneratorsDAOImplTest" time="0.001"/>
   <testcase name="getById" classname="edu.csula.storage.servlet.GeneratorsDAOImplTest" time="0.001"/>
   <testcase name="add" classname="edu.csula.storage.servlet.GeneratorsDAOImplTest" time="0.001"/>
-  <testcase name="set" classname="edu.csula.storage.servlet.GeneratorsDAOImplTest" time="0.002"/>
-  <testcase name="getAllWhenNull" classname="edu.csula.storage.servlet.GeneratorsDAOImplTest" time="0.001"/>
+  <testcase name="set" classname="edu.csula.storage.servlet.GeneratorsDAOImplTest" time="0.0"/>
+  <testcase name="getAllWhenNull" classname="edu.csula.storage.servlet.GeneratorsDAOImplTest" time="0.0"/>
   <system-out><![CDATA[]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>
