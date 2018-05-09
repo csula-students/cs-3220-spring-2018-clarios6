@@ -15,6 +15,10 @@ import edu.csula.storage.servlet.EventsDAOImpl;
 import edu.csula.storage.EventsDAO;
 import edu.csula.models.Event;
 
+import edu.csula.storage.servlet.UsersDAOImpl;
+import edu.csula.storage.UsersDAO;
+import edu.csula.models.User;
+
 @WebServlet("/admin/events")
 public class AdminEventsServlet extends HttpServlet {
 	@Override
@@ -26,7 +30,13 @@ public class AdminEventsServlet extends HttpServlet {
 		EventsDAO dao = new EventsDAOImpl(getServletContext());
 		Collection<Event> events = dao.getAll();
 		request.setAttribute("e", events);
-		request.getRequestDispatcher("/WEB-INF/adminevents.jsp").forward(request, response);
+
+		UsersDAO daoT = new UsersDAOImpl(request.getSession());
+		if(!daoT.getAuthenticatedUser().isPresent()){
+			response.sendRedirect("../admin/auth");
+		} else {
+			request.getRequestDispatcher("/WEB-INF/adminevents.jsp").forward(request, response);
+		}
 		//System.out.println(events);
 
 		//out.println(html);

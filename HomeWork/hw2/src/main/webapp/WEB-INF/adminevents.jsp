@@ -33,7 +33,8 @@
     <nav>
       <a href="admin-info.html">Game Infomation</a> |
       <a href="../admin/generators">Generators</a> |
-      <a href="../admin/events">Events</a>
+      <a href="../admin/events">Events</a> |
+      <a href="../admin/auth">Log Out</a>
     </nav>
 
     <div id="wrap">

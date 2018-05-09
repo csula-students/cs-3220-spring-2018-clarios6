@@ -3,17 +3,39 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" type="text/css" href="/app.css">
+    <link rel="stylesheet" type="text/css" href="../app.css">
     <title>Incremental Game</title>
+    <style media="screen">
+    body{
+      background-color: #7FFF00;
+    }
+
+    #wrap{
+      float: left;
+    }
+    .add-event{
+      float: left;
+    }
+    .event-table{
+      float: right;
+      text-align: left;
+      padding-left: 100px;
+    }
+
+    th, td{
+      border: 1px solid #00FFFF;
+      padding: 10px;
+    }
+    </style>
   </head>
   <body>
     <h1>Incremental Game Framework</h1>
     <nav>
       <a href="admin-info.html">Game Infomation</a> |
       <a href="../admin/generators">Generators</a> |
-      <a href="../admin/events">Events</a>
+      <a href="../admin/events">Events</a> |
+      <a href="../admin/auth">Log Out</a>
     </nav>
-
     <div id="wrap">
       <div class="add-event">
         <form method="POST">

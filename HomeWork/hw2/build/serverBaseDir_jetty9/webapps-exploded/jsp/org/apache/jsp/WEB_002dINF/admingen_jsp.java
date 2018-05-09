@@ -56,7 +56,7 @@ public final class admingen_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("<html lang=\"en\">\n");
       out.write("  <head>\n");
       out.write("    <meta charset=\"UTF-8\">\n");
-      out.write("    <link rel=\"stylesheet\" type=\"text/css\" href=\"/app.css\">\n");
+      out.write("    <link rel=\"stylesheet\" type=\"text/css\" href=\"../app.css\">\n");
       out.write("    <title>Incremental Game</title>\n");
       out.write("  </head>\n");
       out.write("  <body>\n");
@@ -64,7 +64,8 @@ public final class admingen_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("    <nav>\n");
       out.write("      <a href=\"admin-info.html\">Game Infomation</a> |\n");
       out.write("      <a href=\"../admin/generators\">Generators</a> |\n");
-      out.write("      <a href=\"../admin/events\">Events</a>\n");
+      out.write("      <a href=\"../admin/events\">Events</a> |\n");
+      out.write("      <a href=\"../admin/auth\">Log Out</a>\n");
       out.write("    </nav>\n");
       out.write("\n");
       out.write("    <div id=\"wrap\">\n");

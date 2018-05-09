@@ -15,6 +15,10 @@ import edu.csula.storage.servlet.GeneratorsDAOImpl;
 import edu.csula.storage.GeneratorsDAO;
 import edu.csula.models.Generator;
 
+import edu.csula.storage.servlet.UsersDAOImpl;
+import edu.csula.storage.UsersDAO;
+import edu.csula.models.User;
+
 @WebServlet("/admin/generators")
 public class AdminGeneratorsServlet extends HttpServlet {
 	@Override
@@ -25,7 +29,14 @@ public class AdminGeneratorsServlet extends HttpServlet {
 		GeneratorsDAO dao = new GeneratorsDAOImpl(getServletContext());
 		Collection<Generator> gens = dao.getAll();
 		request.setAttribute("g", gens);
-		request.getRequestDispatcher("/WEB-INF/admingen.jsp").forward(request, response);
+
+		UsersDAO daoT = new UsersDAOImpl(request.getSession());
+		if(!daoT.getAuthenticatedUser().isPresent()){
+			response.sendRedirect("../admin/auth");
+		} else {
+			request.getRequestDispatcher("/WEB-INF/admingen.jsp").forward(request, response);
+		}
+
 	}
 
 
