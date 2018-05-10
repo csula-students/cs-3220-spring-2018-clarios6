@@ -4,7 +4,7 @@ import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.jsp.*;
 
-public final class admingenedit_jsp extends org.apache.jasper.runtime.HttpJspBase
+public final class admineventsedit_jsp extends org.apache.jasper.runtime.HttpJspBase
     implements org.apache.jasper.runtime.JspSourceDependent {
 
   private static final JspFactory _jspxFactory = JspFactory.getDefaultFactory();
@@ -72,33 +72,24 @@ public final class admingenedit_jsp extends org.apache.jasper.runtime.HttpJspBas
       out.write("    </style>\n");
       out.write("  </head>\n");
       out.write("  <body>\n");
-      out.write("    <h1>Editing Generator</h1>\n");
+      out.write("    <h1>Editing Event</h1>\n");
       out.write("    <div id=\"wrap\">\n");
-      out.write("      <div class=\"add-event\">\n");
-      out.write("        <form method=\"POST\">\n");
-      out.write("          <label for=\"generatorname\">Generator Name</label></br>\n");
-      out.write("          <input id=\"generatorname\" name=\"generatorname\" type=\"text\" placeholder=\"");
-      out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${gen.getName()}", java.lang.String.class, (PageContext)_jspx_page_context, null));
-      out.write("\"></br>\n");
-      out.write("          <label for=\"generatorrate\">Generator Rate</label></br>\n");
-      out.write("          <input id=\"generatorrate\" name=\"generatorrate\" type=\"text\" placeholder=\"");
-      out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${gen.getRate()}", java.lang.String.class, (PageContext)_jspx_page_context, null));
-      out.write("\"></br>\n");
-      out.write("          <label for=\"basecost\">Base Cost</label></br>\n");
-      out.write("          <input id=\"basecost\" name=\"basecost\" type=\"text\" placeholder=\"");
-      out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${gen.getBaseCost()}", java.lang.String.class, (PageContext)_jspx_page_context, null));
-      out.write("\"></br>\n");
-      out.write("          <label for=\"unlockat\">Unlock At</label></br>\n");
-      out.write("          <input id=\"unlockat\" name=\"unlockat\" type=\"text\" placeholder=\"");
-      out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${gen.getUnlockAt}", java.lang.String.class, (PageContext)_jspx_page_context, null));
-      out.write("\"></br>\n");
-      out.write("          <label for=\"description\">Description</label></br>\n");
-      out.write("          <input id=\"description\" name=\"description\" type=\"text\" placeholder=\"");
-      out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${gen.getDescription()}", java.lang.String.class, (PageContext)_jspx_page_context, null));
-      out.write("\"></br>\n");
-      out.write("          <button id=\"addeditbutton\">{Edit}</button>\n");
-      out.write("        </form>\n");
-      out.write("      </div>\n");
+      out.write("      <form class=\"add-event\"  method=\"post\">\n");
+      out.write("        <label for=\"eventname\">Event Name</label><br>\n");
+      out.write("        <input type=\"text\" name=\"eventname\" placeholder=\"");
+      out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${ev.getName()}", java.lang.String.class, (PageContext)_jspx_page_context, null));
+      out.write("\"><br>\n");
+      out.write("        <label for=\"eventdescription\">Event Description</label><br>\n");
+      out.write("        <input type=\"text\" name=\"eventdescription\" placeholder=\"");
+      out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${ev.getDescription()}", java.lang.String.class, (PageContext)_jspx_page_context, null));
+      out.write("\"><br>\n");
+      out.write("        <label for=\"triggerat\">Trigger At</label><br>\n");
+      out.write("        <input type=\"text\" name=\"triggerat\" placeholder=\"");
+      out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${ev.getTriggerAt()}", java.lang.String.class, (PageContext)_jspx_page_context, null));
+      out.write("\"><br>\n");
+      out.write("        <button>Confirm</button>\n");
+      out.write("      </form>\n");
+      out.write("    </div>\n");
       out.write("  </body>\n");
       out.write("</html>\n");
     } catch (Throwable t) {

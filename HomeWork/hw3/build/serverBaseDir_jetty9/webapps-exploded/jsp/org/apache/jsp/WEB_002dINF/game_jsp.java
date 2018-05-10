@@ -4,7 +4,7 @@ import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.jsp.*;
 
-public final class userauthentication_jsp extends org.apache.jasper.runtime.HttpJspBase
+public final class game_jsp extends org.apache.jasper.runtime.HttpJspBase
     implements org.apache.jasper.runtime.JspSourceDependent {
 
   private static final JspFactory _jspxFactory = JspFactory.getDefaultFactory();
@@ -41,50 +41,20 @@ public final class userauthentication_jsp extends org.apache.jasper.runtime.Http
       _jspx_out = out;
       _jspx_resourceInjector = (org.glassfish.jsp.api.ResourceInjector) application.getAttribute("com.sun.appserv.jsp.resource.injector");
 
+      out.write("\n");
       out.write("<!DOCTYPE html>\n");
       out.write("<html>\n");
       out.write("  <head>\n");
       out.write("    <meta charset=\"utf-8\">\n");
-      out.write("    <title>Incremental Game</title>\n");
-      out.write("    <link rel=\"stylesheet\" href=\"../app.css\">\n");
-      out.write("      <style media=\"screen\">\n");
-      out.write("      body{\n");
-      out.write("        background-color: #7FFF00;\n");
-      out.write("      }\n");
-      out.write("\n");
-      out.write("      #wrap{\n");
-      out.write("        float: left;\n");
-      out.write("      }\n");
-      out.write("      .add-event{\n");
-      out.write("        float: left;\n");
-      out.write("      }\n");
-      out.write("      .event-table{\n");
-      out.write("        float: right;\n");
-      out.write("        text-align: left;\n");
-      out.write("        padding-left: 100px;\n");
-      out.write("      }\n");
-      out.write("\n");
-      out.write("      th, td{\n");
-      out.write("        border: 1px solid #00FFFF;\n");
-      out.write("        padding: 10px;\n");
-      out.write("      }\n");
-      out.write("      </style>\n");
+      out.write("    <title></title>\n");
       out.write("  </head>\n");
       out.write("  <body>\n");
-      out.write("    <div id=\"wrap\">\n");
-      out.write("      <div class=\"add-event\">\n");
-      out.write("        <form method=\"POST\">\n");
-      out.write("          <label for=\"username\">User Name</label>\n");
-      out.write("          <input type=\"text\" name=\"username\" placeholder=\"admin\">\n");
-      out.write("          <label for=\"password\">password</label>\n");
-      out.write("          <input type=\"text\" name=\"password\" placeholder=\"cs3220password\">\n");
-      out.write("          <button>Log-in</button>\n");
-      out.write("        </form>\n");
-      out.write("      </dizv>\n");
-      out.write("      <div class=\"event-table\">\n");
-      out.write("\n");
-      out.write("      </div>\n");
-      out.write("    </div>\n");
+      out.write("    <a href=\"#\">");
+      out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${storyjson}", java.lang.String.class, (PageContext)_jspx_page_context, null));
+      out.write("</a>\n");
+      out.write("    <a href=\"#\">");
+      out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${genjson}", java.lang.String.class, (PageContext)_jspx_page_context, null));
+      out.write("</a>\n");
       out.write("  </body>\n");
       out.write("</html>\n");
     } catch (Throwable t) {
