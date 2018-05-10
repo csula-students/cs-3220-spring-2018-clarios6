@@ -168,7 +168,8 @@ main();
 // main function wraps everything at top level
 function main() {
 	// TODO: fill the blank based on the theme you have choosen
-	const initialState = {
+	const initialState = window.backInfo;
+	/*{
 		example: 'Hello custom element',
 		counter: 0,
 		generators: [{
@@ -212,7 +213,7 @@ function main() {
 			triggeredAt: 20,
 			state: 'hidden'
 		}]
-	};
+	};*/
 
 	// initialize store
 	const store = new _store2.default(_reducer2.default, initialState);
