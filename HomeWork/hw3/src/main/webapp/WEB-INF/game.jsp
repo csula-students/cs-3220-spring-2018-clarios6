@@ -97,6 +97,6 @@ bottom: 0px;
     <footer>
       <p>Created by: Carlos Larios-solis</p>
     </footer>
-    <script type="text/javascript" src="/app.bundle.js"></script>
+    <script type="text/javascript" src="app.bundle.js"></script>
   </body>
 </html>
