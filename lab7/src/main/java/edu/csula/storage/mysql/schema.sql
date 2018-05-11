@@ -35,23 +35,12 @@ CREATE TABLE Quantities(
 INSERT INTO Users (username, password) VALUES
   ("admin", "cs3220password"), ("me", "notapassword");
 
-SELECT * FROM Users;
-
 INSERT INTO Generators VALUES
   (1, "Slave", "A run of the mill slave it generates one ore per minute", 5, 10, 10, 1),
   (2, "Robot", "An expensive robot that generates 10 ores per minute", 10, 15, 30, 1),
   (3, "Advanced Robot", "A state-of-the-art robot. It generates 20 ores per minute", 20, 20, 100, 1);
 
-SELECT * FROM Generators;
-
 INSERT INTO Events VALUES
  (1, "Slave shows up", "Slave mining ores", 10, 1),
  (2, "Robots are invented", "Robots mine faster than slaves", 15, 1),
  (3, "Advanced Robots created", "Advanced Robots just do it better", 20, 1),
-
-
-INSERT INTO Quantities VALUES
-  (1, "c7a69d44e0b9b415b2d9956cb26b944a", 2),
-  (2, "c7a69d44e0b9b415b2d9956cb26b944a", 1),
-  (1, "80516ce4663c3bd0c8385309a2fe226e", 20),
-  (2, "80516ce4663c3bd0c8385309a2fe226e", 30);
