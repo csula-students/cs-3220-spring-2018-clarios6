@@ -17,9 +17,9 @@ public class EventsDAOImpl implements EventsDAO {
 	//       use these queries variable accordingly in the method below
 	protected static final String getAllQuery = "SELECT * FROM Events";
 	protected static final String getByIdQuery = "SELECT * FROM Events WHERE id = ?";
-	protected static final String setQuery = "UPDATE events SET name = ?, description = ?, trigger_at = ? WHERE id = ?";
-	protected static final String addQuery = "INSERT INTO Events (?, ?, ?)";
+	protected static final String setQuery = "UPDATE Events SET name = ?, description = ?, trigger_at = ? WHERE id = ?";
 	protected static final String removeQuery = "DELETE FROM Events WHERE id = ?";
+	protected static final String addQuery = "INSERT INTO Events (name, description, trigger_at, created_by) VALUES (?, ?, ?, ?)";
 
 	public EventsDAOImpl(Database context) {
 		this.context = context;

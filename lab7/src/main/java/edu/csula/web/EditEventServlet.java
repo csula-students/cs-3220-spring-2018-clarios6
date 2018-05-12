@@ -11,9 +11,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.RequestDispatcher;
 
-import edu.csula.storage.servlet.EventsDAOImpl;
+import edu.csula.storage.mysql.EventsDAOImpl;
 import edu.csula.storage.EventsDAO;
 import edu.csula.models.Event;
+import edu.csula.storage.mysql.Database;
 
 @WebServlet("/admin/events/edit")
 public class EditEventServlet extends HttpServlet {
@@ -23,15 +24,12 @@ public class EditEventServlet extends HttpServlet {
 		PrintWriter out = response.getWriter();
 		// TODO: render the events page HTML
 		int id = Integer.parseInt(request.getParameter("id"));
-    EventsDAO dao = new EventsDAOImpl(getServletContext());
-		Collection<Event> events = dao.getAll();
+    EventsDAO dao = new EventsDAOImpl(new Database());
+		Optional<Event> events = dao.getById(id);
     Event edEvent = null;
-    for(Event e : events){
-      if(e.getId() == id){
-        edEvent = e;
-        break;
-      }
-    }
+    if(events.isPresent()){
+			edEvent = events.get(); 
+		}
 		request.setAttribute("ev", edEvent);
 		request.getRequestDispatcher("/WEB-INF/admineventsedit.jsp").forward(request, response);
 	}
@@ -41,7 +39,7 @@ public class EditEventServlet extends HttpServlet {
 	public void doPost( HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
     // TODO: handle upsert transaction
     int id = Integer.parseInt(request.getParameter("id"));
-		EventsDAO dao = new EventsDAOImpl(getServletContext());
+		EventsDAO dao = new EventsDAOImpl(new Database());
 		Collection<Event> events = dao.getAll();
     Event edEvent = null;
     for(Event e : events){
@@ -55,6 +53,8 @@ public class EditEventServlet extends HttpServlet {
 		edEvent.setDescription(request.getParameter("eventdescription"));
 		edEvent.setTriggerAt(Integer.parseInt(request.getParameter("triggerat")));
 		System.out.println("Edit Event");
+
+		dao.set(id, edEvent);
 
 		response.sendRedirect("../events");
 	}

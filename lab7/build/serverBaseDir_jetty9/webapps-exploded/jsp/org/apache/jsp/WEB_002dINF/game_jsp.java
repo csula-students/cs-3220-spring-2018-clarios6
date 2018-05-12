@@ -144,7 +144,7 @@ public final class game_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("    <footer>\n");
       out.write("      <p>Created by: Carlos Larios-solis</p>\n");
       out.write("    </footer>\n");
-      out.write("    <script type=\"text/javascript\" src=\"/app.bundle.js\"></script>\n");
+      out.write("    <script type=\"text/javascript\" src=\"app.bundle.js\"></script>\n");
       out.write("  </body>\n");
       out.write("</html>\n");
     } catch (Throwable t) {

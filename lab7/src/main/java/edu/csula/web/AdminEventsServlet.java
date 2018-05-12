@@ -11,7 +11,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.RequestDispatcher;
 
-import edu.csula.storage.servlet.EventsDAOImpl;
+import edu.csula.storage.mysql.EventsDAOImpl;
+import edu.csula.storage.mysql.Database;
 import edu.csula.storage.EventsDAO;
 import edu.csula.models.Event;
 
@@ -23,12 +24,8 @@ import edu.csula.models.User;
 public class AdminEventsServlet extends HttpServlet {
 	@Override
 	public void doGet( HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		response.setContentType("text/html");
-		String html = "";
-		PrintWriter out = response.getWriter();
-		// TODO: render the events page HTML
-		EventsDAO dao = new EventsDAOImpl(getServletContext());
-		Collection<Event> events = dao.getAll();
+		EventsDAO dao = new EventsDAOImpl(new Database());
+		Collection<Event> events =  dao.getAll();
 		request.setAttribute("e", events);
 
 		UsersDAO daoT = new UsersDAOImpl(request.getSession());
@@ -46,7 +43,7 @@ public class AdminEventsServlet extends HttpServlet {
 	@Override
 	public void doPost( HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO: handle upsert transaction
-		EventsDAO dao = new EventsDAOImpl(getServletContext());
+		EventsDAO dao = new EventsDAOImpl(new Database());
 		Collection<Event> events = dao.getAll();
 
 		int id = events.size();
