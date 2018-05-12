@@ -17,7 +17,7 @@ public class GeneratorsDAOImpl implements GeneratorsDAO {
 	//       use these queries variable accordingly in the method below
 	protected static final String getAllQuery = "SELECT * FROM Generators";
 	protected static final String getByIdQuery = "SELECT * FROM Generators WHERE id = ?";
-	protected static final String setQuery = "UPDATE Generators SET name = ?, description = ?, rate = ?, base_cost = ?, unlock_at = ?";
+	protected static final String setQuery = "UPDATE Generators SET name = ?, description = ?, rate = ?, base_cost = ?, unlock_at = ? WHERE id = ?";
 	protected static final String removeQuery = "DELETE FROM Generators WHERE id = ?";
 	protected static final String addQuery = "INSERT INTO Generators (name, description, rate, base_cost, unlock_at, created_by) VALUES (?, ?, ?, ?, ?, ?)";
 
@@ -71,6 +71,7 @@ public class GeneratorsDAOImpl implements GeneratorsDAO {
 			ps.setInt(3, generator.getRate());
 			ps.setInt(4, generator.getBaseCost());
 			ps.setInt(5, generator.getUnlockAt());
+			ps.setInt(6, id);
 			ps.executeUpdate();
 		} catch(SQLException e){
 			e.printStackTrace();
