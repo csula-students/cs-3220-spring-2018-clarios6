@@ -87,6 +87,7 @@ public class EventsDAOImpl implements EventsDAO {
 			ps.setString(1, event.getName());
 			ps.setString(2, event.getDescription());
 			ps.setInt(3, event.getTriggerAt());
+			ps.setInt(4, 1);
 			ps.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();

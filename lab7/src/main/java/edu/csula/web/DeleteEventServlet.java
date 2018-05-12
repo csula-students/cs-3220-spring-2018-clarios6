@@ -22,9 +22,9 @@ public class DeleteEventServlet extends HttpServlet {
 	public void doGet( HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		response.setContentType("text/html");
     int id = Integer.parseInt(request.getParameter("id"));
-    /*int index = -1;
+    //int index = -1;
 		EventsDAO dao = new EventsDAOImpl(new Database());
-    List<Event> events = dao.getAll();
+    /*List<Event> events = dao.getAll();
     for(int i = 0 ; i < events.size() ; i++){
       if(events.get(i).getId() == id){
         index = i;
@@ -32,7 +32,7 @@ public class DeleteEventServlet extends HttpServlet {
       }
     }
 		*/
-    events.remove(id);
+    dao.remove(id);
 		request.getRequestDispatcher("/WEB-INF/admineventsremove.jsp").forward(request,response);
 	}
 }
