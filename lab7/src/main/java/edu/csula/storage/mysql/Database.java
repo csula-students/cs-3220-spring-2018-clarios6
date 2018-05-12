@@ -6,11 +6,13 @@ import java.sql.SQLException;
 
 public class Database implements edu.csula.storage.Database{
 	// FIXME: don't hard commit your credential
-	private static final String database = "cs3220_lab";
-	private static final String host = "localhost";
-	private static final String url = String.format("jdbc:mysql://%s/%s", host, database);
-	private static final String username = "root";
+	/*My local MySQL instalation is currently borked*/
+	private static final String database = "cs3220stu44";
+	private static final String host = "cs3.calstatela.edu:8080";
+	private static final String username = "cs3220stu44";
 	private static final String password = "";
+	private static final String url = String.format("jdbc:mysql://%s/%s?user=/%s&paswsword=%s", host, database, username, password);
+	//jdbc:mysql//[host:port]/[databbase][?user=cs3220xstu25&password=abcd]
 
 	public Database() {
 		try {
@@ -24,4 +26,3 @@ public class Database implements edu.csula.storage.Database{
 		return DriverManager.getConnection(url, username, password);
 	}
 }
-

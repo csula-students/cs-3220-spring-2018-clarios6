@@ -32,7 +32,7 @@ public class EventsDAOImplTest {
 		when(getAllResultSet.getString(3)).thenReturn("desc");
 		when(getAllResultSet.getInt(4)).thenReturn(10);
 
-		Statement getAllStatement = mock(Statement.class); 
+		Statement getAllStatement = mock(Statement.class);
 		when(getAllStatement.executeQuery(EventsDAOImpl.getAllQuery)).thenReturn(getAllResultSet);
 
 		Connection getAllConnection = mock(Connection.class);
@@ -63,11 +63,11 @@ public class EventsDAOImplTest {
 		when(resultSet.getString(3)).thenReturn("desc");
 		when(resultSet.getInt(4)).thenReturn(10);
 
-		PreparedStatement getAllStatement = mock(PreparedStatement.class); 
+		PreparedStatement getAllStatement = mock(PreparedStatement.class);
 		when(getAllStatement.executeQuery()).thenReturn(resultSet);
 
 		Connection getAllConnection = mock(Connection.class);
-		when(getAllConnection.prepareStatement(EventsDAOImpl.addQuery)).thenReturn(getAllStatement);
+		when(getAllConnection.prepareStatement(EventsDAOImpl.getByIdQuery)).thenReturn(getAllStatement);
 
 		context = mock(Database.class);
 		when(context.getConnection()).thenReturn(getAllConnection);
