@@ -57,6 +57,7 @@
           <thead>
             <tr>
               <th>Name</th>
+              <th>Description</th>
               <th>Rate</th>
               <th>Cost</th>
               <th>Unlock At</th>
@@ -67,11 +68,11 @@
             <c:forEach items="${g}" var="gen">
               <tr>
                 <td>${gen.getName()}</td>
+                <td>${gen.getDescription()}</td>
                 <td>${gen.getRate()}</td>
                 <td>${gen.getBaseCost()}</td>
                 <td>${gen.getUnlockAt()}</td>
                 <td> <a href="../admin/generators/edit?id=${gen.getId()}">Edit</a> | <a href="../admin/generator/delete?id=${gen.getId()}">Delete</a></td>
-              </td>
             </c:forEach>
           </tbody>
         </table>

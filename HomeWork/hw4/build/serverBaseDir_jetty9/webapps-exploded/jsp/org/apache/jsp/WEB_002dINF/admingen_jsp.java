@@ -110,6 +110,7 @@ public final class admingen_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("          <thead>\n");
       out.write("            <tr>\n");
       out.write("              <th>Name</th>\n");
+      out.write("              <th>Description</th>\n");
       out.write("              <th>Rate</th>\n");
       out.write("              <th>Cost</th>\n");
       out.write("              <th>Unlock At</th>\n");
@@ -159,6 +160,9 @@ public final class admingen_jsp extends org.apache.jasper.runtime.HttpJspBase
           out.write("              <tr>\n");
           out.write("                <td>");
           out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${gen.getName()}", java.lang.String.class, (PageContext)_jspx_page_context, null));
+          out.write("</td>\n");
+          out.write("                <td>");
+          out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${gen.getDescription()}", java.lang.String.class, (PageContext)_jspx_page_context, null));
           out.write("</td>\n");
           out.write("                <td>");
           out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${gen.getRate()}", java.lang.String.class, (PageContext)_jspx_page_context, null));

@@ -34,15 +34,15 @@
       <div class="add-event">
         <form method="POST">
           <label for="generatorname">Generator Name</label></br>
-          <input id="generatorname" name="generatorname" type="text" placeholder="${gen.getName()}"></br>
+          <input id="generatorname" name="generatorname" type="text" placeholder="${edGen.getName()}"></br>
           <label for="generatorrate">Generator Rate</label></br>
-          <input id="generatorrate" name="generatorrate" type="text" placeholder="${gen.getRate()}"></br>
+          <input id="generatorrate" name="generatorrate" type="text" placeholder="${edGen.getRate()}"></br>
           <label for="basecost">Base Cost</label></br>
-          <input id="basecost" name="basecost" type="text" placeholder="${gen.getBaseCost()}"></br>
+          <input id="basecost" name="basecost" type="text" placeholder="${edGen.getBaseCost()}"></br>
           <label for="unlockat">Unlock At</label></br>
-          <input id="unlockat" name="unlockat" type="text" placeholder="${gen.getUnlockAt}"></br>
+          <input id="unlockat" name="unlockat" type="text" placeholder="${edGen.getUnlockAt()}"></br>
           <label for="description">Description</label></br>
-          <input id="description" name="description" type="text" placeholder="${gen.getDescription()}"></br>
+          <input id="description" name="description" type="text" placeholder="${edGen.getDescription()}"></br>
           <button id="addeditbutton">{Edit}</button>
         </form>
       </div>
